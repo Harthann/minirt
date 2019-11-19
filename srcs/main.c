@@ -6,7 +6,7 @@
 /*   By: nieyraud <nieyraud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/10 14:32:26 by nieyraud          #+#    #+#             */
-/*   Updated: 2019/11/19 13:31:06 by nieyraud         ###   ########.fr       */
+/*   Updated: 2019/11/19 18:50:12 by nieyraud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 
 int main(int ac, char **av)
 {
-    t_window  data;
+    t_scene scene;
 	// t_point	start;
 	// t_point	end;
 	// t_sphere sphere;
@@ -34,18 +34,19 @@ int main(int ac, char **av)
 	// sphere.z = 500.0;
 	// sphere.radius = 200.0;
 	// sphere.colour = 0xff0000;
-	// if (ac == 2)
-	// 	parse_file(&data, av[1]);
+	if (ac == 2 || ac == 3)
+	{
+		scene = parse_file(av[1]);
+	}
 	// else
 	// 	ft_error(1);
 	(void)ac;
 	(void)av;
-    if ((data.mlx_ptr = mlx_init()) == NULL)
+    if ((scene.win.mlx_ptr = mlx_init()) == NULL)
         return (EXIT_FAILURE);
-	data.width = 1280.0;
-	data.heigth = 1024.0;
-    if ((data.mlx_win = mlx_new_window(data.mlx_ptr, data.width, data.heigth, "miniRT")) == NULL)
+	printf("[%d] [%d]\n", scene.win.heigth, scene.win.width);
+    if ((scene.win.mlx_win = mlx_new_window(scene.win.mlx_ptr, scene.win.width, scene.win.heigth, "miniRT")) == NULL)
         return (EXIT_FAILURE);
-	mlx_loop(data.mlx_ptr);
+	mlx_loop(scene.win.mlx_ptr);
     return (EXIT_SUCCESS);
 } 

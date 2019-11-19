@@ -6,24 +6,26 @@
 #    By: nieyraud <nieyraud@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/11/10 16:28:15 by nieyraud          #+#    #+#              #
-#    Updated: 2019/11/19 13:28:38 by nieyraud         ###   ########.fr        #
+#    Updated: 2019/11/19 18:45:26 by nieyraud         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = minirt
 
-SRC_FILE =	draw_square.c \
-			draw_circle.c \
-			draw_line.c \
-			get_next_line.c \
+SRC_FILE =	get_next_line.c \
 			get_next_line_utils.c \
+			init_resolution.c \
+			parse_file.c \
 			main.c
-
+			# draw_square.c \
+			# draw_circle.c \
+			# draw_line.c \#
 PATH = srcs/
 
 SRCS		= $(addprefix ${PATH}, ${SRC_FILE})
 OBJS		= ${SRCS:%.c=%.o}
-INCLUDE		= include/minirt.h
+INCLUDE		= 	include/minirt.h \
+				include/libft.h
 
 FLAGS = -Wall -Werror -Wextra
 
@@ -31,14 +33,15 @@ MINILIB = libmlx.a
 LIBFT	= libft.a
 
 LIB = lib/
-LIBS = ${addprefix $(LIB), ${LIBFT}} ${addprefix $(LIB), ${MINILIB}}
+LIBS = ${addprefix $(LIB), ${LIBFT}} \
+		${addprefix $(LIB), ${MINILIB}}
 FRAMEWORK = -framework OpenGL -framework AppKit
 
 all : $(NAME)
 
 $(NAME) : ${OBJS} ${INCLUDE} ${LIBS}
 	@echo Creating ${NAME}
-	@gcc ${FLAGS} -I include -g -L ${LIB} -l mlx ${FRAMEWORK} ${OBJS}  -o ${NAME}
+	@gcc ${FLAGS} -I include -g -L ${LIB} -l mlx ${FRAMEWORK} ${OBJS} lib/${LIBFT} -o ${NAME}
 
 ${LIBS} : 
 	${MAKE} -C libft/
