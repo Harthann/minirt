@@ -19,8 +19,9 @@ CFLAGS+= -DSTRINGPUTX11
 all: $(NOM)
 
 $(NOM):	$(OBJ)
-	$(AR) -r $(NOM) $(OBJ)
-	${RANLIB} $(NOM)
+	@${ECHO} Creating ${NOM}
+	@$(AR) -r ../lib/$(NOM) $(OBJ)
+	@${RANLIB} ../lib/$(NOM)
 
 %.o: %.c
 	@${ECHO} Compiling $<

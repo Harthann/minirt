@@ -1,26 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_substr.c                                        :+:      :+:    :+:   */
+/*   get_pos.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nieyraud <nieyraud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/10/09 17:03:44 by nieyraud          #+#    #+#             */
-/*   Updated: 2019/11/23 14:12:44 by nieyraud         ###   ########.fr       */
+/*   Created: 2019/11/20 12:02:09 by nieyraud          #+#    #+#             */
+/*   Updated: 2019/11/25 13:31:16 by nieyraud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "minirt.h"
 #include "libft.h"
 
-char	*ft_substr(char const *s, unsigned int start, size_t len)
+int		get_pos(t_point *vector, const char *str)
 {
-	char	*str;
+	int i;
 
-	if (!(str = (char*)malloc(sizeof(char) * (len + 1))))
-		return (0);
-	ft_bzero(str, len + 1);
-	if (start > ft_strlen(s))
-		return (str);
-	ft_strlcpy(str, s + start, len);
-	return (str);
+	i = 0;
+	vector->x = ft_atof(str);
+	while (str[i] && str[i] != ',')
+		i++;
+	i++;
+	vector->y = ft_atof(str + i);
+	while (str[i] && str[i] != ',')
+		i++;
+	i++;
+	vector->z = ft_atof(str + i);
+	while (str[i] && str[i] != ' ' && str[i] != '\t')
+		i++;
+	while (str[i] && (str[i] == ' ' || str[i] == '\t'))
+		i++;
+	return (i);
 }

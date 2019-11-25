@@ -6,7 +6,7 @@
 /*   By: nieyraud <nieyraud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/08 17:02:41 by nieyraud          #+#    #+#             */
-/*   Updated: 2019/11/10 14:22:48 by nieyraud         ###   ########.fr       */
+/*   Updated: 2019/11/20 15:09:05 by nieyraud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,5 @@ char			**ft_split(char const *s, char c);
 char			*ft_itoa(int n);
 char			*ft_strtrim(char const *s1, char const *set);
 char			*ft_ultoa(unsigned long int n);
-int				get_next_line(int fd, char **line);
-char			*ft_strjoin_free(char *s1, char *s2);
 
 #endif

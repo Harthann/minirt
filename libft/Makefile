@@ -35,7 +35,7 @@ SRC_FILE =		ft_atoi.c \
 				ft_itoa.c \
 				ft_strtrim.c \
 				ft_strmapi.c \
-				ft_ultoa.c
+				ft_ultoa.c \
 
 SRCS		= ${SRC_FILE}
 OBJS		= $(SRCS:%.c=%.o)
@@ -54,8 +54,8 @@ all : $(NAME)
 
 $(NAME) : ${OBJS} ${INCLUDE}
 	@${ECHO} Creating ${NAME}
-	@${AR} rc ${NAME} ${OBJS}
-	@${RANLIB} ${NAME}
+	@${AR} rc ../lib/${NAME} ${OBJS}
+	@${RANLIB} ../lib/${NAME}
 
 %.o: %.c
 	@${ECHO} Compiling $<

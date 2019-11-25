@@ -1,26 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_substr.c                                        :+:      :+:    :+:   */
+/*   set_resolution.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nieyraud <nieyraud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/10/09 17:03:44 by nieyraud          #+#    #+#             */
-/*   Updated: 2019/11/23 14:12:44 by nieyraud         ###   ########.fr       */
+/*   Created: 2019/11/19 18:09:58 by nieyraud          #+#    #+#             */
+/*   Updated: 2019/11/20 14:32:05 by nieyraud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "minirt.h"
 #include "libft.h"
 
-char	*ft_substr(char const *s, unsigned int start, size_t len)
+void	set_resolution(t_scene *scene, const char *str)
 {
-	char	*str;
-
-	if (!(str = (char*)malloc(sizeof(char) * (len + 1))))
-		return (0);
-	ft_bzero(str, len + 1);
-	if (start > ft_strlen(s))
-		return (str);
-	ft_strlcpy(str, s + start, len);
-	return (str);
+	while (*str && !(*str >= '0' && *str <= '9'))
+		str++;
+	scene->win.width = ft_atoi(str);
+	while (*str && *str >= '0' && *str <= '9')
+		str++;
+	while (*str && *str >= '0' && *str <= '9')
+		str++;
+	scene->win.heigth = ft_atoi(str);
+	// printf("[%d] [%d]\n", scene->win.heigth, scene->win.width);
 }

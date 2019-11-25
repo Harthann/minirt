@@ -6,20 +6,29 @@
 /*   By: nieyraud <nieyraud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/19 13:41:33 by nieyraud          #+#    #+#             */
-/*   Updated: 2019/11/19 18:33:44 by nieyraud         ###   ########.fr       */
+/*   Updated: 2019/11/24 19:04:21 by nieyraud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 #include <fcntl.h>
 
-static void	parse_line(t_scene *scene, char *str)
+static void	parse_line(t_scene *scene, const char *str)
 {
 	int	i;
 
 	i = 0;
 	if (*str == 'R')
-		init_resolution(scene, str);
+		set_resolution(scene, str);
+	else if(*str == 'A')
+		set_ambient_light(scene, str);
+	else if(*str == 'l')
+		set_light(scene, str);
+	else if(*str == 'c')
+		set_cam(scene, str);
+	else if(*str == 's' && *(str + 1) == 'p')
+		set_sphere(scene, str);
+
 }
 
 t_scene		parse_file(char *str)

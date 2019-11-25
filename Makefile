@@ -6,7 +6,7 @@
 #    By: nieyraud <nieyraud@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/11/10 16:28:15 by nieyraud          #+#    #+#              #
-#    Updated: 2019/11/19 18:45:26 by nieyraud         ###   ########.fr        #
+#    Updated: 2019/11/25 16:22:15 by nieyraud         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,12 +14,25 @@ NAME = minirt
 
 SRC_FILE =	get_next_line.c \
 			get_next_line_utils.c \
-			init_resolution.c \
+			ft_atof.c \
+			init_scene.c \
+			get_color.c \
+			get_pos.c \
 			parse_file.c \
-			main.c
-			# draw_square.c \
-			# draw_circle.c \
-			# draw_line.c \#
+			set_resolution.c \
+			set_ambient_light.c \
+			set_cam.c \
+			set_light.c \
+			set_sphere.c \
+			calc_inter.c \
+			browse_objects.c \
+			main.c \
+			draw_image.c \
+			draw_circle.c \
+			lib_vec.c \
+			raytrace.c \
+			intersection.c
+			
 PATH = srcs/
 
 SRCS		= $(addprefix ${PATH}, ${SRC_FILE})
@@ -43,11 +56,16 @@ $(NAME) : ${OBJS} ${INCLUDE} ${LIBS}
 	@echo Creating ${NAME}
 	@gcc ${FLAGS} -I include -g -L ${LIB} -l mlx ${FRAMEWORK} ${OBJS} lib/${LIBFT} -o ${NAME}
 
-${LIBS} : 
-	${MAKE} -C libft/
-	mv libft/${LIBFT} lib/.
-	${MAKE} -C minilibx_opengl_20191021/
-	mv minilibx_opengl_20191021/${MINILIB} lib/.
+${LIBS} : lib1 minilib
+
+lib1 :
+	@echo Checking update for libft.a
+	@${MAKE} -C libft/
+	
+
+minilib :
+	@echo Checking update for minilibx
+	@${MAKE} -C minilibx
 
 %.o: %.c
 	@echo Compiling $<
@@ -56,8 +74,12 @@ ${LIBS} :
 clean :
 	@echo Removing objects files
 	@rm -f ${OBJS}
-	@make fclean -C libft
-	@make clean -C minilibx_opengl_20191021
+	@make clean -C libft
+	@make clean -C minilibx
+
+run : ${NAME}
+	@./${NAME} scenes/square.rt
+
 fclean : clean
 	@echo Removing ${NAME}
 	@rm -f $(NAME) ${LIBS}

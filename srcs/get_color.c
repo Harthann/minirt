@@ -1,26 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_substr.c                                        :+:      :+:    :+:   */
+/*   get_color.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nieyraud <nieyraud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/10/09 17:03:44 by nieyraud          #+#    #+#             */
-/*   Updated: 2019/11/23 14:12:44 by nieyraud         ###   ########.fr       */
+/*   Created: 2019/11/20 11:21:52 by nieyraud          #+#    #+#             */
+/*   Updated: 2019/11/20 11:36:39 by nieyraud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "minirt.h"
 #include "libft.h"
 
-char	*ft_substr(char const *s, unsigned int start, size_t len)
+void	get_color(t_color *color, const char *str)
 {
-	char	*str;
-
-	if (!(str = (char*)malloc(sizeof(char) * (len + 1))))
-		return (0);
-	ft_bzero(str, len + 1);
-	if (start > ft_strlen(s))
-		return (str);
-	ft_strlcpy(str, s + start, len);
-	return (str);
+	color->R = (*str >= '0' && *str <= '9') ? ft_atoi(str) : -1;
+	while (*str >= '0' && *str <= '9')
+		str++;
+	str++;
+	color->G = (*str >= '0' && *str <= '9') ? ft_atoi(str) : -1;
+	while (*str >= '0' && *str <= '9')
+		str++;
+	str++;
+	color->B = (*str >= '0' && *str <= '9') ? ft_atoi(str) : -1;
+	while (*str >= '0' && *str <= '9')
+		str++;
+	str++;
 }
