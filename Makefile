@@ -6,7 +6,7 @@
 #    By: nieyraud <nieyraud@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/11/10 16:28:15 by nieyraud          #+#    #+#              #
-#    Updated: 2019/11/25 16:22:15 by nieyraud         ###   ########.fr        #
+#    Updated: 2019/12/07 00:24:54 by nieyraud         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,7 +31,11 @@ SRC_FILE =	get_next_line.c \
 			draw_circle.c \
 			lib_vec.c \
 			raytrace.c \
-			intersection.c
+			pixel_intensity.c \
+			set_plane.c \
+			set_cylindre.c \
+			intersection.c \
+			initiate_calc.c
 			
 PATH = srcs/
 
@@ -40,32 +44,28 @@ OBJS		= ${SRCS:%.c=%.o}
 INCLUDE		= 	include/minirt.h \
 				include/libft.h
 
-FLAGS = -Wall -Werror -Wextra
+FLAGS = -Wall -Werror -Wextra -O2 -march=native
+OPT_FLAGS = -flto
+THREAD = -lpthread
 
 MINILIB = libmlx.a
 LIBFT	= libft.a
 
 LIB = lib/
-LIBS = ${addprefix $(LIB), ${LIBFT}} \
-		${addprefix $(LIB), ${MINILIB}}
+LIBS = ${addprefix $(LIB), ${LIBFT}}
 FRAMEWORK = -framework OpenGL -framework AppKit
 
 all : $(NAME)
 
 $(NAME) : ${OBJS} ${INCLUDE} ${LIBS}
 	@echo Creating ${NAME}
-	@gcc ${FLAGS} -I include -g -L ${LIB} -l mlx ${FRAMEWORK} ${OBJS} lib/${LIBFT} -o ${NAME}
+	@gcc ${FLAGS} ${OPT_FLAGS} ${THREAD} -I include -g -L ${LIB} -l mlx ${FRAMEWORK} ${OBJS} lib/${LIBFT} -o ${NAME}
 
-${LIBS} : lib1 minilib
+${LIBS} : lib1
 
 lib1 :
 	@echo Checking update for libft.a
 	@${MAKE} -C libft/
-	
-
-minilib :
-	@echo Checking update for minilibx
-	@${MAKE} -C minilibx
 
 %.o: %.c
 	@echo Compiling $<
@@ -75,7 +75,6 @@ clean :
 	@echo Removing objects files
 	@rm -f ${OBJS}
 	@make clean -C libft
-	@make clean -C minilibx
 
 run : ${NAME}
 	@./${NAME} scenes/square.rt

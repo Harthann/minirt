@@ -1,4 +1,4 @@
-NAME = libft.a
+NAME = ../lib/libft.a
 GNL = gnl
 
 SRC_FILE =		ft_atoi.c \
@@ -54,8 +54,8 @@ all : $(NAME)
 
 $(NAME) : ${OBJS} ${INCLUDE}
 	@${ECHO} Creating ${NAME}
-	@${AR} rc ../lib/${NAME} ${OBJS}
-	@${RANLIB} ../lib/${NAME}
+	@${AR} rc ${NAME} ${OBJS}
+	@${RANLIB} ${NAME}
 
 %.o: %.c
 	@${ECHO} Compiling $<

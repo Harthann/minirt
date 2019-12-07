@@ -6,7 +6,7 @@
 /*   By: nieyraud <nieyraud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/10 15:44:21 by nieyraud          #+#    #+#             */
-/*   Updated: 2019/11/25 16:21:41 by nieyraud         ###   ########.fr       */
+/*   Updated: 2019/12/07 00:30:50 by nieyraud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,9 @@
 #include <stdio.h>
 #include <string.h>
 #include <mlx.h>
+#include <pthread.h>
+
+# define NB_THREADS 4
 
 /*			STRUCTURE USUELLES		*/
 
@@ -26,6 +29,7 @@ typedef struct		s_window
     void	*mlx_win;
 	int		width;
 	int		heigth;
+	int		fov;
 }					t_window;
 
 typedef struct		s_color
@@ -64,10 +68,11 @@ typedef struct		s_square
 typedef struct		s_cyl
 {
 	t_point			pos;
+	t_point			vec;
 	double			radius;
 	double			heigth;
 	t_color			color;
-	struct s_cyl	*cyl;
+	struct s_cyl	*next;
 }					t_cyl;
 
 typedef struct		s_plan
@@ -103,6 +108,7 @@ typedef struct		s_cam
 	t_point vector;
 	double	v_plane_w;
 	double	v_plane_h;
+	struct s_cam *next;
 }					t_cam;
 
 typedef struct		s_obj
@@ -122,6 +128,8 @@ typedef struct		s_image
 	int		size;
 	int		endian;
 	int		*image;
+	int		end;
+	struct s_image *next;
 }					t_img;
 
 typedef struct		s_inter
@@ -136,10 +144,26 @@ typedef struct		s_scene
 {
 	t_window	win;
 	t_light		ambient;
-	t_cam		cam;
+	t_cam		*cam;
 	t_obj		obj;
-	t_img		image;
+	t_img		*image;
 }					t_scene;
+
+typedef struct		s_thread
+{
+	pthread_t	thread[NB_THREADS];
+	t_scene		*scene;
+	int			**img;
+	t_cam		cam;
+}					t_thread;
+
+typedef struct		s_glob
+{
+	t_scene scene;
+	int		i;
+	int		j;
+	t_cam	cam;
+}					t_glob;
 
 /*			FONCTIONS UTILS			*/
 
@@ -148,17 +172,23 @@ double		ft_atof(const char *str);
 
 /*			LIB VECTEUR				*/
 
+double		length_vec(t_point vec);
 t_point		norm_vec(t_point vec);
 t_point		cross_poduct(t_point a, t_point b);
 double		dot_product(t_point vec1, t_point vec2);
 t_point 	shift_vec(t_point O, t_point vec, int d, char op);
 t_point		norm_vec(t_point vec);
+t_point 	mult_vec(t_point a, double b);
 
 /*			FONCTIONS DESSIN		*/
 
 void		draw_line(t_point start, t_point end, t_window data);
-int			browse_sphere(t_cam cam, t_sphere *sphere, t_point dir, t_inter *i);
-double		inter_sphere(t_cam cam, t_sphere sphere, t_point dir);
+int			browse_sphere(t_point pos, t_sphere *sphere, t_point dir, t_inter *i);
+int			browse_cylindre(t_point pos, t_cyl *cyl, t_point dir, t_inter *i);
+int			browse_plan(t_point pos, t_plan *plan, t_point dir, t_inter *i);
+double		inter_sphere(t_point pos, t_sphere sphere, t_point dir);
+double		inter_plan(t_point pos, t_plan plan, t_point dir);
+double		inter_cyl(t_point pos, t_cyl cyl, t_point dir);
 
 /*			INITIALISATION ET PARSE	*/
 void		init_scene(t_scene *scene);
@@ -170,10 +200,15 @@ void		set_ambient_light(t_scene *scene, const char *str);
 void		set_cam(t_scene *scene, const char *str);
 void		set_sphere(t_scene *scene, const char *str);
 void		set_light(t_scene *scene, const char *str);
+void		set_plan(t_scene *scene, const char *str);
+void		set_cylindre(t_scene *scene, const char *str);
 
 /*			GLOBAL					*/
 
-void		draw_image(t_scene *scene);
-int			raytrace(t_scene *scene, int i, int j);
-int			check_intersection(t_scene *scene, t_point dir);
+void		draw_image(t_scene scene, t_cam cam, int **img);
+void		initiate(t_scene scene);
+int			raytrace(t_scene *scene, int i, int j, t_cam cam);
+double		check_intersection(t_scene *scene, t_point dir,t_point pos, t_inter *i);
+t_color		pixel_intensity(t_inter inter, t_light *lights, t_cam cam, t_scene scene);
+
 #endif

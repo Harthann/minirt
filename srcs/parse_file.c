@@ -6,7 +6,7 @@
 /*   By: nieyraud <nieyraud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/19 13:41:33 by nieyraud          #+#    #+#             */
-/*   Updated: 2019/11/24 19:04:21 by nieyraud         ###   ########.fr       */
+/*   Updated: 2019/12/07 00:40:20 by nieyraud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,11 +24,14 @@ static void	parse_line(t_scene *scene, const char *str)
 		set_ambient_light(scene, str);
 	else if(*str == 'l')
 		set_light(scene, str);
+	else if(*str == 'c' && *(str + 1) == 'y')
+		set_cylindre(scene, str);
 	else if(*str == 'c')
 		set_cam(scene, str);
 	else if(*str == 's' && *(str + 1) == 'p')
 		set_sphere(scene, str);
-
+	else if(*str == 'p' && *(str + 1) == 'l')
+		set_plan(scene, str);
 }
 
 t_scene		parse_file(char *str)
@@ -38,6 +41,7 @@ t_scene		parse_file(char *str)
 	char	*line;
 	int		fd;
 
+	init_scene(&scene);
 	success = 1;
 	fd = open(str, O_RDONLY);
 	while (success > 0)

@@ -6,12 +6,20 @@
 /*   By: nieyraud <nieyraud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/22 14:39:08 by nieyraud          #+#    #+#             */
-/*   Updated: 2019/11/24 16:50:16 by nieyraud         ###   ########.fr       */
+/*   Updated: 2019/12/02 13:07:53 by nieyraud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 #include <math.h>
+
+t_point mult_vec(t_point a, double b)
+{
+	a.x = a.x * b;
+	a.y = a.y * b;
+	a.z = a.z * b;
+	return (a);
+}
 
 double	length_vec(t_point vec)
 {

@@ -18,16 +18,9 @@
 #include <mlx.h>
 #include <unistd.h>
 
-int		ft_exit(int key, t_scene *scene)
-{
-	// printf("%d\n", key);
-	if (key == 53)
-	{
-		mlx_destroy_window(scene->win.mlx_ptr, scene->win.mlx_win);
-		exit(0);
-	}
-	return (1);
-}
+// __attribute__((destructor)) void no_end(void);
+
+
 
 static t_img		*create_image(t_window win)
 {
@@ -39,12 +32,47 @@ static t_img		*create_image(t_window win)
 		return (NULL);
 	if (!(i->image = (int*)mlx_get_data_addr(i->ptr, &i->bpp, &i->size, &i->endian)))
 		return (NULL);
+	i->next = NULL;
+	i->end = 0;
 	return (i);
+}
+
+void		add_back(t_img **images, t_img *new)
+{
+	t_img *tmp;
+
+	if (!*images)
+		*images = new;
+	else
+	{
+		tmp = *images;
+		while (tmp->next)
+			tmp = tmp->next;
+		tmp->next = new;
+	}
 }
 
 static int		browse_image(t_scene *scene)
 {
-	scene->image = *create_image(scene->win);
+	t_cam	*tmp;
+	t_img	*memo;
+
+	tmp = scene->cam;
+	while (tmp)
+	{
+		tmp = tmp->next;
+		memo = create_image(scene->win);
+		add_back(&scene->image, memo);
+	}
+	// if (!count)
+	// 	ft_error(scene, "No Camera found");
+	memo->next = scene->image;
+	memo->end = 1;
+	// while (memo)
+	// {
+	// 	printf("[%p]\n", memo);
+	// 	memo = memo->next;
+	// }
 	return (0);	
 }
 
@@ -52,7 +80,6 @@ int main(int ac, char **av)
 {
     t_scene scene;
 
-	init_scene(&scene);
 	if (ac == 2 || ac == 3)
 	{
 		scene = parse_file(av[1]);
@@ -67,9 +94,10 @@ int main(int ac, char **av)
     if ((scene.win.mlx_win = mlx_new_window(scene.win.mlx_ptr, scene.win.width, scene.win.heigth, "miniRT")) == NULL)
         return (-1);
 	browse_image(&scene);
-	draw_image(&scene);
-	mlx_put_image_to_window(scene.win.mlx_ptr, scene.win.mlx_win, scene.image.ptr, 0, 0);
-	mlx_key_hook(scene.win.mlx_win, ft_exit, &scene);
-	mlx_loop(scene.win.mlx_ptr);
+	initiate(scene);
     return (0);
 } 
+
+// void no_end(){
+// 	while (1);
+// }

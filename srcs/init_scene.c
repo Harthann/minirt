@@ -6,11 +6,12 @@
 /*   By: nieyraud <nieyraud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/20 13:35:08 by nieyraud          #+#    #+#             */
-/*   Updated: 2019/11/24 17:13:22 by nieyraud         ###   ########.fr       */
+/*   Updated: 2019/12/07 00:40:03 by nieyraud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
+#include "libft.h"
 
 static void	init_win(t_window *win)
 {
@@ -18,17 +19,19 @@ static void	init_win(t_window *win)
 	win->mlx_win = NULL;
 	win->heigth = 0;
 	win->width = 0;
+	win->fov = 90;
 }
 
-static void	init_cam(t_cam *cam)
-{
-	cam->pos.x = 0;
-	cam->pos.y = 0;
-	cam->pos.z = 0;
-	cam->vector.x = 0;
-	cam->vector.y = 0;
-	cam->vector.z = 0;
-}
+// static void	init_cam(t_cam *cam)
+// {
+// 	cam->pos.x = 0;
+// 	cam->pos.y = 0;
+// 	cam->pos.z = 0;
+// 	cam->vector.x = 0;
+// 	cam->vector.y = 0;
+// 	cam->vector.z = 0;
+// 	cam->next = NULL;
+// }
 
 static void	init_ambient(t_light *light)
 {
@@ -53,9 +56,11 @@ static void init_objs(t_obj *obj)
 
 void	init_scene(t_scene *scene)
 {
-	
 	init_win(&scene->win);
-	init_cam(&scene->cam);
+	// init_cam(scene->cam);
 	init_ambient(&scene->ambient);
 	init_objs(&scene->obj);
+
+	scene->cam = NULL;
+	scene->image = NULL;
 }

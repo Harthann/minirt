@@ -1,46 +1,44 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   set_light.c                                        :+:      :+:    :+:   */
+/*   set_plane.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nieyraud <nieyraud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/11/20 13:11:53 by nieyraud          #+#    #+#             */
-/*   Updated: 2019/12/03 18:06:00 by nieyraud         ###   ########.fr       */
+/*   Created: 2019/11/27 17:34:51 by nieyraud          #+#    #+#             */
+/*   Updated: 2019/11/28 20:41:42 by nieyraud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include "minirt.h"
 
-static t_light *new_light(const char *str)
+static t_plan *new_plan(const char *str)
 {
-	t_light *light;
+	t_plan *plan;
 
-	if (!(light = (t_light*)malloc(sizeof(t_light))))
+	if (!(plan = (t_plan*)malloc(sizeof(t_plan))))
 		return (NULL);
 	while (*str && !(*str >= '0' && *str <= '9') && *str != '-')
 		str++;
-	str += get_pos(&light->pos, str);
-	light->intensity = ft_atof(str);
-	while (*str && ((*str >= '0' && *str <= '9') || *str == '.'))
-		str++;
+	str += get_pos(&plan->origin, str);
+	str += get_pos(&plan->vector, str);
 	while (*str && (*str == ' ' || *str == '\t'))
 		str++;
-	get_color(&light->color, str);
-	light->next = NULL;
-	return (light);
+	get_color(&plan->color, str);
+	plan->next = NULL;
+	return (plan);
 }
 
-void	set_light(t_scene *scene, const char *str)
+void	set_plan(t_scene *scene, const char *str)
 {
-	t_light *obj;
+	t_plan *obj;
 	
-	obj = scene->obj.light;
+	obj = scene->obj.plan;
 	while (obj && obj->next)
 		obj = obj->next;
 	if (obj)
-		obj->next = new_light(str);
+		obj->next = new_plan(str);
 	else
-		scene->obj.light = new_light(str);
+		scene->obj.plan = new_plan(str);
 }
