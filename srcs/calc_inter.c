@@ -6,7 +6,7 @@
 /*   By: nieyraud <nieyraud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/25 16:20:20 by nieyraud          #+#    #+#             */
-/*   Updated: 2019/12/06 03:23:37 by nieyraud         ###   ########.fr       */
+/*   Updated: 2019/12/07 16:37:21 by nieyraud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,6 +81,7 @@ double		inter_cyl(t_point pos, t_cyl cyl, t_point dir)
     // d[2] = dot_product(tmp, tmp) - cyl.radius * cyl.radius;
 	/*				*/
 	d[5] = d[1] * d[1] - 4.0 * d[0] * d[2];
+	d[5] = d[5] >= -0.000001 && d[5] <= 0.000001 ? 0 : d[5];
 	d[6] = inter_circle(pos, cyl, dir);
 	if (d[5] > 0)
 	{
@@ -137,6 +138,7 @@ double	inter_sphere(t_point pos, t_sphere sphere, t_point dir)
 	if (a == 0)
 		return (- c / b);
 	det = b * b - 4 * a * c;
+	det = det >= -0.000001 && det <= 0.000001 ? 0 : det;
 	if (det > 0)
 	{
 		c = sqrt(det);

@@ -6,7 +6,7 @@
 /*   By: nieyraud <nieyraud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/19 13:41:33 by nieyraud          #+#    #+#             */
-/*   Updated: 2019/12/07 00:40:20 by nieyraud         ###   ########.fr       */
+/*   Updated: 2019/12/07 17:03:26 by nieyraud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,8 @@ static void	parse_line(t_scene *scene, const char *str)
 		set_sphere(scene, str);
 	else if(*str == 'p' && *(str + 1) == 'l')
 		set_plan(scene, str);
+	else if(*str == 't' && *(str + 1) == 'r')
+		set_triangle(scene, str);
 }
 
 t_scene		parse_file(char *str)

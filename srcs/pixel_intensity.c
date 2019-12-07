@@ -6,7 +6,7 @@
 /*   By: nieyraud <nieyraud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/27 09:49:29 by nieyraud          #+#    #+#             */
-/*   Updated: 2019/12/06 03:17:03 by nieyraud         ###   ########.fr       */
+/*   Updated: 2019/12/07 21:30:44 by nieyraud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ static double	specular_light(t_light light, t_inter inter, t_point V)
 	dot = dot < 0 ? 0 : dot;
 	// ip = light.intensity * 0.8 * pow(dot, 100) / (0.1 + 0.05 * ip + 0);
 	ip = light.intensity * 20 * pow(dot, 100) / (0.1 + 0.05 * ip + 0);
-	// ip = ip < 0 ? 0: ip;
+	ip = ip < 0 ? 0: ip;
 	return (ip);
 }
 
@@ -90,7 +90,6 @@ t_color		pixel_intensity(t_inter inter, t_light *lights, t_cam cam, t_scene scen
 		check_intersection(&scene, vec, inter.P, &it);
 		if (it.d == -1 || (it.d > length_vec(shift_vec(lights->pos, inter.P, 1, '-'))))
 		{
-			// printf("[%f] [%f] [%f]\n", (double)lights->color.R,(double)lights->color.G,(double)lights->color.B);
 			intensite_R += diffuse_light(*lights, inter, scene) * ((double)lights->color.R / 255);
 			intensite_R += specular_light(*lights, inter, cam.pos) * ((double)lights->color.R / 255);
 			intensite_G += diffuse_light(*lights, inter, scene) * ((double)lights->color.G / 255);

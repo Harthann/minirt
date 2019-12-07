@@ -6,7 +6,7 @@
 /*   By: nieyraud <nieyraud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/22 19:15:37 by nieyraud          #+#    #+#             */
-/*   Updated: 2019/12/06 23:04:47 by nieyraud         ###   ########.fr       */
+/*   Updated: 2019/12/07 14:14:41 by nieyraud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ int		raytrace(t_scene *scene, int i, int j, t_cam cam)
 	
 	point.x = coef * 2 * ((double)j + 0.5) / (double)scene->win.width - 1;
 	point.y = 1 - 2 * ((double)i + 0.5) / (double)scene->win.heigth;
-	point.z = 1;
+	point.z = tan(scene->win.fov / 2 * M_PI / 180);
 	point_2 = point;
 	point.x = point_2.x * matrice[0].x + point_2.y * matrice[1].x + point_2.z * matrice[2].x + matrice[3].x;
 	point.y = point_2.x * matrice[0].y + point_2.y * matrice[1].y + point_2.z * matrice[2].y + matrice[3].y;

@@ -6,7 +6,7 @@
 #    By: nieyraud <nieyraud@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/11/10 16:28:15 by nieyraud          #+#    #+#              #
-#    Updated: 2019/12/07 00:24:54 by nieyraud         ###   ########.fr        #
+#    Updated: 2019/12/07 17:29:59 by nieyraud         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -35,7 +35,9 @@ SRC_FILE =	get_next_line.c \
 			set_plane.c \
 			set_cylindre.c \
 			intersection.c \
-			initiate_calc.c
+			initiate_calc.c \
+			set_triangle.c \
+			calc_inter_2.c 
 			
 PATH = srcs/
 

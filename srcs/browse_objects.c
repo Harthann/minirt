@@ -6,7 +6,7 @@
 /*   By: nieyraud <nieyraud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/25 16:15:46 by nieyraud          #+#    #+#             */
-/*   Updated: 2019/12/06 20:35:25 by nieyraud         ###   ########.fr       */
+/*   Updated: 2019/12/07 21:31:30 by nieyraud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,6 +100,36 @@ int		browse_sphere(t_point pos, t_sphere *sphere, t_point dir, t_inter *i)
 		i->N = shift_vec(i->P , memo->center, 1, '-');
 		i->N = norm_vec(i->N);
 		if (dot_product(i->N, dir) > 0)
+			i->N = mult_vec(i->N, -1);
+	}
+	return (i->d);
+}
+
+int		browse_triangle(t_point pos, t_triangle *triangle, t_point dir, t_inter *i)
+{
+	double tmp;
+	t_point vertex[2];
+	t_triangle *memo;
+
+	memo = NULL;
+	while (triangle)
+	{
+		tmp = inter_triangle(pos, *triangle, dir);
+		if (tmp > -1 && (tmp < i->d || i->d == -1))
+		{
+			i->d = tmp;
+			memo = triangle;
+		}
+		triangle = triangle->next;
+	}
+	if (memo)
+	{
+		i->color = memo->color;
+		i->P = shift_vec(pos, dir, i->d, '+');
+		vertex[0] = shift_vec(memo->vertex2, memo->vertex1, 1, '-');
+		vertex[1] = shift_vec(memo->vertex3, memo->vertex2, 1, '-');
+		i->N = norm_vec(cross_poduct(vertex[0], vertex[1]));
+		if (dot_product(i->N, dir) >= 0)
 			i->N = mult_vec(i->N, -1);
 	}
 	return (i->d);

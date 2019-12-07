@@ -6,7 +6,7 @@
 /*   By: nieyraud <nieyraud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/10 15:44:21 by nieyraud          #+#    #+#             */
-/*   Updated: 2019/12/07 00:30:50 by nieyraud         ###   ########.fr       */
+/*   Updated: 2019/12/07 17:31:05 by nieyraud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 #include <pthread.h>
 
 # define NB_THREADS 4
-
+// # define EPSILON 0.000001;
 /*			STRUCTURE USUELLES		*/
 
 typedef struct		s_window
@@ -129,6 +129,7 @@ typedef struct		s_image
 	int		endian;
 	int		*image;
 	int		end;
+	t_cam	cam;
 	struct s_image *next;
 }					t_img;
 
@@ -186,9 +187,11 @@ void		draw_line(t_point start, t_point end, t_window data);
 int			browse_sphere(t_point pos, t_sphere *sphere, t_point dir, t_inter *i);
 int			browse_cylindre(t_point pos, t_cyl *cyl, t_point dir, t_inter *i);
 int			browse_plan(t_point pos, t_plan *plan, t_point dir, t_inter *i);
+int			browse_triangle(t_point pos, t_triangle *triangle, t_point dir, t_inter *i);
 double		inter_sphere(t_point pos, t_sphere sphere, t_point dir);
 double		inter_plan(t_point pos, t_plan plan, t_point dir);
 double		inter_cyl(t_point pos, t_cyl cyl, t_point dir);
+double		inter_triangle(t_point pos, t_triangle triangle, t_point dir);
 
 /*			INITIALISATION ET PARSE	*/
 void		init_scene(t_scene *scene);
@@ -202,6 +205,7 @@ void		set_sphere(t_scene *scene, const char *str);
 void		set_light(t_scene *scene, const char *str);
 void		set_plan(t_scene *scene, const char *str);
 void		set_cylindre(t_scene *scene, const char *str);
+void		set_triangle(t_scene *scene, const char *str);
 
 /*			GLOBAL					*/
 

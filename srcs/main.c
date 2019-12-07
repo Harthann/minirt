@@ -22,7 +22,7 @@
 
 
 
-static t_img		*create_image(t_window win)
+static t_img		*create_image(t_window win, t_cam *cam)
 {
 	t_img	*i;
 
@@ -32,6 +32,12 @@ static t_img		*create_image(t_window win)
 		return (NULL);
 	if (!(i->image = (int*)mlx_get_data_addr(i->ptr, &i->bpp, &i->size, &i->endian)))
 		return (NULL);
+	(void)cam;
+
+	if (cam)
+		i->cam = *cam;
+	else
+		ft_bzero(&i->cam, sizeof(t_cam));
 	i->next = NULL;
 	i->end = 0;
 	return (i);
@@ -58,11 +64,15 @@ static int		browse_image(t_scene *scene)
 	t_img	*memo;
 
 	tmp = scene->cam;
+	// while (scene->cam)
+	// {
+	// 	scene->cam = scene->cam->next;
+	// }
 	while (tmp)
 	{
-		tmp = tmp->next;
-		memo = create_image(scene->win);
+		memo = create_image(scene->win, tmp);
 		add_back(&scene->image, memo);
+		tmp = tmp->next;
 	}
 	// if (!count)
 	// 	ft_error(scene, "No Camera found");
