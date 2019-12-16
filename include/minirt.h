@@ -6,7 +6,7 @@
 /*   By: nieyraud <nieyraud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/10 15:44:21 by nieyraud          #+#    #+#             */
-/*   Updated: 2019/12/15 14:27:55 by nieyraud         ###   ########.fr       */
+/*   Updated: 2019/12/16 14:19:41 by nieyraud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -264,6 +264,7 @@ void				next_image(t_scene *scene);
 void				cam_control(t_scene *scene, int key);
 void				fov_control(t_scene *scene, int key);
 int					rotation(t_scene *scene);
+t_p					find_top_vec(t_p vec);
 
 /*
 ** GLOBAL

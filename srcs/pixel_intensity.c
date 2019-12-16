@@ -6,7 +6,7 @@
 /*   By: nieyraud <nieyraud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/27 09:49:29 by nieyraud          #+#    #+#             */
-/*   Updated: 2019/12/15 14:04:46 by nieyraud         ###   ########.fr       */
+/*   Updated: 2019/12/16 15:42:52 by nieyraud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ t_color	pixel_intens(t_inter i, t_light *lights, t_scene scene)
 	i_r = scene.ambient.intensity * 0.15 * (double)scene.ambient.color.r / 255;
 	i_g = scene.ambient.intensity * 0.15 * (double)scene.ambient.color.g / 255;
 	i_b = scene.ambient.intensity * 0.15 * (double)scene.ambient.color.b / 255;
-	ft_bzero(&it, sizeof(t_inter));
+	// ft_bzero(&it, sizeof(t_inter));
 	while (lights)
 	{
 		vec = norm_vec(shift_vec(lights->pos, i.p, -1));

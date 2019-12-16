@@ -6,7 +6,7 @@
 /*   By: nieyraud <nieyraud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/20 10:45:58 by nieyraud          #+#    #+#             */
-/*   Updated: 2019/12/15 16:54:58 by nieyraud         ###   ########.fr       */
+/*   Updated: 2019/12/16 15:02:50 by nieyraud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,17 +14,16 @@
 #include "libft.h"
 #include <stdio.h>
 
-int		integer_part(const char *str)
+int		integer_part(const char *str, int *sign)
 {
 	int		nb;
-	int		sign;
 
 	nb = 0;
-	sign = 1;
+	*sign = 1;
 	if (*str == '+' || *str == '-')
 	{
 		if (*str == '-')
-			sign = -1;
+			*sign = -1;
 		str++;
 	}
 	while ((*str >= '0' && *str <= '9') && *str)
@@ -32,9 +31,10 @@ int		integer_part(const char *str)
 		nb = nb * 10 + *str - 48;
 		str++;
 	}
-	if (*str != '.' && *str != ',' && *str != ' ' && *str != '\t' && *str != '\0')
+	if (*str != '.' && *str != ',' && *str != ' '
+		&& *str != '\t' && *str != '\0')
 		ft_error("Wrong number setting\n", NULL);
-	return (nb * sign);
+	return (nb);
 }
 
 double	ft_atof(const char *str)
@@ -43,10 +43,8 @@ double	ft_atof(const char *str)
 	int		count;
 	int		sign;
 
-	nb = integer_part(str);
+	nb = integer_part(str, &sign);
 	count = 10;
-	sign = nb < 0 ? -1 : 1;
-	nb = sign * nb;
 	while (*str && *str != '.' && *str != ',' && *str != ' ' && *str != '\t')
 		str++;
 	if (*str == ',')

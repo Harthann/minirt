@@ -6,7 +6,7 @@
 /*   By: nieyraud <nieyraud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/22 19:15:37 by nieyraud          #+#    #+#             */
-/*   Updated: 2019/12/16 12:13:30 by nieyraud         ###   ########.fr       */
+/*   Updated: 2019/12/16 15:38:32 by nieyraud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,17 +48,17 @@ static t_color	fill_color(t_scene scene)
 
 t_p				find_top_vec(t_p vec)
 {
-	t_p y;
+	t_p y[2];
 	t_p x;
 
-	y = norm_vec(fill_vec(0, 1, 0));
-	x = norm_vec(fill_vec(1, 0, 0));
-	if (!dot_product(vec, x))
+	y[0] = fill_vec(0, 1, 0);
+	y[1] = fill_vec(0, -1, 0);
+	x = fill_vec(1, 0, 0);
+	if (comp_vec(vec, y[0]) || comp_vec(vec, y[1]))
 	{
-		printf("[%f] [%f] [%f]\n", vec.x, vec.y, vec.z);
-		y = cross_poduct(x, vec);
+		y[0] = cross_poduct(vec, x);
 	}
-	return (y);
+	return (y[0]);
 }
 
 int				raytrace(t_scene *scene, int i, int j, t_cam cam)
@@ -69,9 +69,7 @@ int				raytrace(t_scene *scene, int i, int j, t_cam cam)
 
 	ft_bzero(&inter, sizeof(t_inter));
 	inter.d = -1;
-	point[0] = fill_vec(0, 1, 0);
-	cam.vector = norm_vec(cam.vector);
-	point[0] = find_top_vec(cam.vector);//comp_vec(cam.vector, point[0]) ? point[0] : fill_vec(0, 0, 1);
+	point[0] = find_top_vec(cam.vector);
 	matrice[0] = norm_vec(cross_poduct(point[0], cam.vector));
 	matrice[1] = norm_vec(cross_poduct(cam.vector, matrice[0]));
 	matrice[2] = cam.vector;

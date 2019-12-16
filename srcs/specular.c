@@ -6,7 +6,7 @@
 /*   By: nieyraud <nieyraud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/13 18:50:01 by nieyraud          #+#    #+#             */
-/*   Updated: 2019/12/15 13:02:37 by nieyraud         ###   ########.fr       */
+/*   Updated: 2019/12/16 15:41:47 by nieyraud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,6 @@ double	specular_light(t_light light, t_inter inter, t_p v)
 	r.x = 2 * dot * inter.n.x;
 	r.y = 2 * dot * inter.n.y;
 	r.z = 2 * dot * inter.n.z;
-	// R = norm_vec(R);
 	r = shift_vec(r, vec, -1);
 	v = shift_vec(v, inter.p, -1);
 	v = norm_vec(v);

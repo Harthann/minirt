@@ -6,7 +6,7 @@
 /*   By: nieyraud <nieyraud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/10 14:32:26 by nieyraud          #+#    #+#             */
-/*   Updated: 2019/12/15 14:10:47 by nieyraud         ###   ########.fr       */
+/*   Updated: 2019/12/16 15:53:08 by nieyraud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,14 +18,13 @@
 #include <mlx.h>
 #include <unistd.h>
 
+void __attribute__((destructor)) no_end();
 
-// void __attribute__((destructor)) no_end();
-
-// void	no_end(void)
-// {
-// 	while (1)
-// 		;
-// }
+void	no_end(void)
+{
+	while (1)
+		;
+}
 
 static t_img		*create_image(t_window win, t_cam *cam)
 {
@@ -90,11 +89,7 @@ int					main(int ac, char **av)
 		write(1, "No input file\n", 14);
 		return (-1);
 	}
-	if ((scene.win.mlx_ptr = mlx_init()) == NULL)
-		return (-1);
-	if ((scene.win.mlx_win = mlx_new_window(scene.win.mlx_ptr,
-		scene.win.width, scene.win.heigth, "miniRT")) == NULL)
-		return (-1);
+
 	browse_image(&scene);
 	initiate(scene);
 	if (ac == 3 && !ft_strncmp(av[2], "-save", 5))

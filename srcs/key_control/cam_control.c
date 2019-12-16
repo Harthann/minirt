@@ -6,7 +6,7 @@
 /*   By: nieyraud <nieyraud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/11 14:11:21 by nieyraud          #+#    #+#             */
-/*   Updated: 2019/12/12 02:27:02 by nieyraud         ###   ########.fr       */
+/*   Updated: 2019/12/16 15:38:33 by nieyraud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,8 @@ void	rotate_cam(t_scene *scene, int key, t_p axe)
 	scene->image->cam.vector.y += vec.y * mat[1].y + vec.z * mat[1].z;
 	scene->image->cam.vector.z = vec.x * mat[2].x;
 	scene->image->cam.vector.z += vec.y * mat[2].y + vec.z * mat[2].z;
-	scene->image->cam.vector = norm_vec(scene->image->cam.vector);
+	scene->image->cam.vector = scene->image->cam.vector;
+
 }
 
 void	translate_cam(t_scene *scene, int key, t_p axe)
@@ -55,9 +56,9 @@ void	cam_control(t_scene *scene, int key)
 	t_p axes[4];
 
 	axes[3] = fill_vec(0, 1, 0);
-	axes[2] = norm_vec(scene->image->cam.vector);
-	axes[1] = cross_poduct(axes[3], axes[2]);
-	axes[0] = cross_poduct(axes[2], axes[1]);
+	axes[2] = scene->image->cam.vector;
+	axes[0] = find_top_vec(axes[2]);
+	axes[1] = cross_poduct(axes[0], axes[2]);
 	if (key >= 123 && key <= 126)
 	{
 		if (key == 123 || key == 124)
