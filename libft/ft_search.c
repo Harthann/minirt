@@ -1,34 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.h                                    :+:      :+:    :+:   */
+/*   ft_search.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nieyraud <nieyraud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/10/16 15:40:10 by nieyraud          #+#    #+#             */
-/*   Updated: 2019/12/16 20:57:39 by nieyraud         ###   ########.fr       */
+/*   Created: 2019/12/16 20:52:40 by nieyraud          #+#    #+#             */
+/*   Updated: 2019/12/16 21:08:34 by nieyraud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef GET_NEXT_LINE_H
-# define GET_NEXT_LINE_H
+#include <stdio.h>
 
-# include <stdio.h>
-# include <stdlib.h>
-# include <unistd.h>
-# include <fcntl.h>
-# include <string.h>
-# include "libft.h"
-
-# define BUFFER_SIZE 32
-
-typedef struct		s_stock
+int		ft_search(char *str, char c)
 {
-	char			*str;
-	int				fd;
-	struct s_stock	*next;
-}					t_stock;
+	int i;
 
-int					get_next_line(int fd, char **line);
-
-#endif
+	i = 0;
+	if (!str)
+		return (-1);
+	while (str[i])
+	{
+		if (str[i] == c)
+			return (i);
+		i++;
+	}
+	return (-1);
+}

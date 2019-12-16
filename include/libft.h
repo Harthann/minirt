@@ -6,7 +6,7 @@
 /*   By: nieyraud <nieyraud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/08 17:02:41 by nieyraud          #+#    #+#             */
-/*   Updated: 2019/12/12 20:54:20 by nieyraud         ###   ########.fr       */
+/*   Updated: 2019/12/16 20:53:33 by nieyraud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,10 +57,12 @@ void			ft_putchar_fd(char c, int fd);
 void			ft_putendl_fd(char *s, int fd);
 void			ft_putnbr_fd(int n, int fd);
 char			*ft_strjoin(char const *s1, char const *s2);
+char			*ft_strjoin_free(char *s1, char *s2, char state);
 char			**ft_split(char const *s, char c);
 char			*ft_itoa(int n);
 char			*ft_strtrim(char const *s1, char const *set);
 char			*ft_ultoa(unsigned long int n);
 char			*ft_ultox(unsigned long int n);
+int				ft_search(char *str, char c);
 
 #endif

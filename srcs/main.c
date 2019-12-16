@@ -6,7 +6,7 @@
 /*   By: nieyraud <nieyraud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/10 14:32:26 by nieyraud          #+#    #+#             */
-/*   Updated: 2019/12/16 19:54:32 by nieyraud         ###   ########.fr       */
+/*   Updated: 2019/12/16 21:20:45 by nieyraud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,14 +17,6 @@
 #include <string.h>
 #include <mlx.h>
 #include <unistd.h>
-
-// void __attribute__((destructor)) no_end();
-
-// void	no_end(void)
-// {
-// 	while (1)
-// 		;
-// }
 
 static t_img		*create_image(t_window win, t_cam *cam)
 {
@@ -89,7 +81,6 @@ int					main(int ac, char **av)
 		write(1, "No input file\n", 14);
 		return (-1);
 	}
-
 	browse_image(&scene);
 	initiate(scene);
 	if (ac == 3 && !ft_strncmp(av[2], "-save", 5))

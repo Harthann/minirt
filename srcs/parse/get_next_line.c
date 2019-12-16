@@ -6,7 +6,7 @@
 /*   By: nieyraud <nieyraud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/16 15:40:36 by nieyraud          #+#    #+#             */
-/*   Updated: 2019/12/16 20:01:31 by nieyraud         ###   ########.fr       */
+/*   Updated: 2019/12/16 21:05:58 by nieyraud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ static int			reading_file(int fd, char **stock)
 			if (!(*stock))
 				*stock = ft_substr(buffer, 0, buff);
 			else
-				*stock = ft_strjoin_free(*stock, buffer);
+				*stock = ft_strjoin_free(*stock, buffer, 1);
 		}
 	}
 	free(buffer);

@@ -6,7 +6,7 @@
 #    By: nieyraud <nieyraud@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/11/10 16:28:15 by nieyraud          #+#    #+#              #
-#    Updated: 2019/12/16 19:55:36 by nieyraud         ###   ########.fr        #
+#    Updated: 2019/12/16 20:59:05 by nieyraud         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -32,12 +32,12 @@ NAME = minirt
 SRC_FILE =	calc_inter.c browse_objects.c main.c draw_image.c \
 			lib_vec.c raytrace.c pixel_intensity.c intersection.c \
 			initiate_calc.c	calc_inter_2.c get_next_line.c \
-			get_next_line_utils.c ft_atof.c init_scene.c \
-			get_color.c get_pos.c parse_file.c set_resolution.c \
-			set_ambient_light.c set_cam.c set_light.c set_sphere.c \
-			set_plane.c set_cylindre.c set_triangle.c set_square.c \
-			lib_vec_2.c cam_control.c key_control.c screenshot.c specular.c\
-			rotate_obj.c free_light_cam.c free_obj.c ft_free.c free_image.c\
+			ft_atof.c init_scene.c get_color.c get_pos.c \
+			parse_file.c set_resolution.c set_ambient_light.c \
+			set_cam.c set_light.c set_sphere.c set_plane.c set_cylindre.c \
+			set_triangle.c set_square.c lib_vec_2.c cam_control.c \
+			key_control.c screenshot.c specular.c rotate_obj.c \
+			free_light_cam.c free_obj.c ft_free.c free_image.c \
 			ft_error.c
 
 #############################

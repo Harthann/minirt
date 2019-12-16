@@ -6,14 +6,13 @@
 /*   By: nieyraud <nieyraud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/27 09:49:29 by nieyraud          #+#    #+#             */
-/*   Updated: 2019/12/16 15:42:52 by nieyraud         ###   ########.fr       */
+/*   Updated: 2019/12/16 21:27:51 by nieyraud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 #include <math.h>
 #include "libft.h"
-
 
 double	diffuse_light(t_light light, t_inter inter)
 {
@@ -45,6 +44,15 @@ void	adjust_color(t_color *color, double i_r, double i_g, double i_b)
 		color->b = 255;
 }
 
+double	adjust_intensity(t_light *lights, t_inter i, int color, t_p pos)
+{
+	double intensity;
+
+	intensity = diffuse_light(*lights, i) * ((double)color / 255);
+	intensity += specular_light(*lights, i, pos) * ((double)color / 255);
+	return (intensity);
+}
+
 t_color	pixel_intens(t_inter i, t_light *lights, t_scene scene)
 {
 	double	i_r;
@@ -56,20 +64,16 @@ t_color	pixel_intens(t_inter i, t_light *lights, t_scene scene)
 	i_r = scene.ambient.intensity * 0.15 * (double)scene.ambient.color.r / 255;
 	i_g = scene.ambient.intensity * 0.15 * (double)scene.ambient.color.g / 255;
 	i_b = scene.ambient.intensity * 0.15 * (double)scene.ambient.color.b / 255;
-	// ft_bzero(&it, sizeof(t_inter));
 	while (lights)
 	{
 		vec = norm_vec(shift_vec(lights->pos, i.p, -1));
 		check_inter(&scene, vec, i.p, &it);
-		if (it.d == -1 ||
-		(it.d > length_vec(shift_vec(lights->pos, i.p, -1))))
+		if (it.d == -1 || (it.d > length_vec(shift_vec(lights->pos, i.p, -1))))
 		{
-			i_r += diffuse_light(*lights, i) * ((double)lights->color.r / 255);
-			i_r += specular_light(*lights, i, scene.image->cam.pos) * ((double)lights->color.r / 255);
-			i_g += diffuse_light(*lights, i) * ((double)lights->color.g / 255);
-			i_g += specular_light(*lights, i, scene.image->cam.pos) * ((double)lights->color.g / 255);
-			i_b += diffuse_light(*lights, i) * ((double)lights->color.b / 255);
-			i_b += specular_light(*lights, i, scene.image->cam.pos) * ((double)lights->color.b / 255);
+			vec = scene.image->cam.pos;
+			i_r += adjust_intensity(lights, i, lights->color.r, vec);
+			i_g += adjust_intensity(lights, i, lights->color.g, vec);
+			i_b += adjust_intensity(lights, i, lights->color.b, vec);
 		}
 		lights = lights->next;
 	}

@@ -6,7 +6,7 @@
 /*   By: nieyraud <nieyraud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/11 14:11:21 by nieyraud          #+#    #+#             */
-/*   Updated: 2019/12/16 15:38:33 by nieyraud         ###   ########.fr       */
+/*   Updated: 2019/12/16 21:19:34 by nieyraud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,6 @@ void	rotate_cam(t_scene *scene, int key, t_p axe)
 	scene->image->cam.vector.z = vec.x * mat[2].x;
 	scene->image->cam.vector.z += vec.y * mat[2].y + vec.z * mat[2].z;
 	scene->image->cam.vector = scene->image->cam.vector;
-
 }
 
 void	translate_cam(t_scene *scene, int key, t_p axe)

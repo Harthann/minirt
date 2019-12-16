@@ -8,11 +8,14 @@ SRC_FILE =		ft_atoi.c ft_bzero.c ft_calloc.c ft_isalnum.c ft_isalpha.c \
 				ft_tolower.c ft_toupper.c ft_memmove.c ft_strnstr.c ft_putchar_fd.c \
 				ft_putstr_fd.c ft_putendl_fd.c ft_putnbr_fd.c ft_substr.c ft_strjoin.c \
 				ft_split.c ft_itoa.c ft_strtrim.c ft_strmapi.c ft_ultoa.c ft_ultox.c \
+				ft_search.c ft_strjoin_free.c \
 
 SRCS		= ${SRC_FILE}
 OBJS		= $(SRCS:%.c=%.o)
 
-INCLUDE = libft.h
+INCLUDE = ../include/
+HEADER_NAME = libft.h
+HEADER = ${addprefix ${INCLUDE}, ${HEADER_NAME}}
 FLAGS = -Wall -Werror -Wextra
 
 ECHO = /bin/echo
@@ -24,14 +27,14 @@ RANLIB = /usr/bin/ranlib
 
 all : $(NAME)
 
-$(NAME) : ${OBJS} ${INCLUDE}
+$(NAME) : ${OBJS} ${HEADER}
 	@${ECHO} Creating ${NAME}
 	@${AR} rc ${NAME} ${OBJS}
 	@${RANLIB} ${NAME}
 
 %.o: %.c
 	@${ECHO} Compiling $<
-	@${CC} $(FLAGS) -c $< -o $@
+	@${CC} $(FLAGS) -I ${INCLUDE} -c $< -o $@
 
 clean :
 	@${ECHO} Removing objects files from libft
