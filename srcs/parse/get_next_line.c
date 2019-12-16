@@ -6,7 +6,7 @@
 /*   By: nieyraud <nieyraud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/16 15:40:36 by nieyraud          #+#    #+#             */
-/*   Updated: 2019/11/27 18:01:17 by nieyraud         ###   ########.fr       */
+/*   Updated: 2019/12/10 16:25:03 by nieyraud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ static t_stock		*new_fd(int fd)
 	return (new);
 }
 
-static void		ft_addfront(t_stock **alst, t_stock *new, int error)
+static	void		ft_addfront(t_stock **alst, t_stock *new, int error)
 {
 	if (alst && error > 0)
 	{
@@ -95,7 +95,7 @@ static int			stock_line(char **line, t_stock *stock)
 	return (error);
 }
 
-int			get_next_line(int fd, char **line)
+int					get_next_line(int fd, char **line)
 {
 	static	t_stock	*stock = NULL;
 	t_stock			*actual;

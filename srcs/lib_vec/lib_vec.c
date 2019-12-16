@@ -6,14 +6,14 @@
 /*   By: nieyraud <nieyraud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/22 14:39:08 by nieyraud          #+#    #+#             */
-/*   Updated: 2019/12/02 13:07:53 by nieyraud         ###   ########.fr       */
+/*   Updated: 2019/12/12 02:29:15 by nieyraud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 #include <math.h>
 
-t_point mult_vec(t_point a, double b)
+t_p	mult_vec(t_p a, double b)
 {
 	a.x = a.x * b;
 	a.y = a.y * b;
@@ -21,12 +21,7 @@ t_point mult_vec(t_point a, double b)
 	return (a);
 }
 
-double	length_vec(t_point vec)
-{
-	return (sqrt(vec.x * vec.x + vec.y * vec.y + vec.z * vec.z));
-}
-
-t_point norm_vec(t_point vec)
+t_p	norm_vec(t_p vec)
 {
 	double length;
 
@@ -37,14 +32,9 @@ t_point norm_vec(t_point vec)
 	return (vec);
 }
 
-double	dot_product(t_point vec1, t_point vec2)
+t_p	cross_poduct(t_p a, t_p b)
 {
-	return (vec1.x * vec2.x + vec1.y * vec2.y + vec1.z * vec2.z);
-}
-
-t_point	cross_poduct(t_point a, t_point b)
-{
-	t_point c;
+	t_p c;
 
 	c.x = a.y * b.z - a.z * b.y;
 	c.y = a.z * b.x - a.x * b.z;
@@ -52,19 +42,10 @@ t_point	cross_poduct(t_point a, t_point b)
 	return (c);
 }
 
-t_point shift_vec(t_point O, t_point vec, int d, char op)
+t_p	shift_vec(t_p origin, t_p vec, int d)
 {
-	if (op == '+')
-	{
-		O.x = O.x + d * vec.x;
-		O.y = O.y + d * vec.y;
-		O.z = O.z + d * vec.z;
-	}
-	else if (op == '-')
-	{
-		O.x = O.x - d * vec.x;
-		O.y = O.y - d * vec.y;
-		O.z = O.z - d * vec.z;
-	}
-	return (O);
+	origin.x = origin.x + d * vec.x;
+	origin.y = origin.y + d * vec.y;
+	origin.z = origin.z + d * vec.z;
+	return (origin);
 }

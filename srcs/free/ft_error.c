@@ -1,35 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_pos.c                                          :+:      :+:    :+:   */
+/*   ft_error.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nieyraud <nieyraud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/11/20 12:02:09 by nieyraud          #+#    #+#             */
-/*   Updated: 2019/11/27 18:01:18 by nieyraud         ###   ########.fr       */
+/*   Created: 2019/12/15 14:23:19 by nieyraud          #+#    #+#             */
+/*   Updated: 2019/12/15 14:29:52 by nieyraud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 #include "libft.h"
 
-int		get_pos(t_point *vector, const char *str)
+void	ft_error(char *str, t_scene *scene)
 {
-	int i;
-
-	i = 0;
-	vector->x = ft_atof(str);
-	while (str[i] && str[i] != ',')
-		i++;
-	i++;
-	vector->y = ft_atof(str + i);
-	while (str[i] && str[i] != ',')
-		i++;
-	i++;
-	vector->z = ft_atof(str + i);
-	while (str[i] && str[i] != ' ' && str[i] != '\t')
-		i++;
-	while (str[i] && (str[i] == ' ' || str[i] == '\t'))
-		i++;
-	return (i);
+	write(1, str, ft_strlen(str));
+	ft_free(scene);
+	exit (0);
 }

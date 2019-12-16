@@ -6,12 +6,12 @@
 /*   By: nieyraud <nieyraud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/16 15:40:10 by nieyraud          #+#    #+#             */
-/*   Updated: 2019/11/19 11:50:45 by nieyraud         ###   ########.fr       */
+/*   Updated: 2019/12/11 00:59:38 by nieyraud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef GET_NEXT_LINE_BONUS_H
-# define GET_NEXT_LINE_BONUS_H
+#ifndef GET_NEXT_LINE_H
+# define GET_NEXT_LINE_H
 
 # include <stdio.h>
 # include <stdlib.h>
@@ -19,7 +19,7 @@
 # include <fcntl.h>
 # include <string.h>
 
-#define BUFFER_SIZE 32
+# define BUFFER_SIZE 32
 
 typedef struct		s_stock
 {

@@ -1,29 +1,41 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   intersection.c                                     :+:      :+:    :+:   */
+/*   lib_vec_2.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nieyraud <nieyraud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/11/24 13:33:27 by nieyraud          #+#    #+#             */
-/*   Updated: 2019/12/12 00:10:34 by nieyraud         ###   ########.fr       */
+/*   Created: 2019/12/10 17:23:54 by nieyraud          #+#    #+#             */
+/*   Updated: 2019/12/11 00:58:28 by nieyraud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 #include <math.h>
-#include "libft.h"
 
-double		check_inter(t_scene *scene, t_p dir, t_p pos, t_inter *i)
+double	length_vec(t_p vec)
 {
-	double	d;
+	return (sqrt(vec.x * vec.x + vec.y * vec.y + vec.z * vec.z));
+}
 
-	i->d = -1;
-	d = -1;
-	d = browse_sphere(pos, scene->obj.sphere, dir, i);
-	d = browse_plan(pos, scene->obj.plan, dir, i);
-	d = browse_cylindre(pos, scene->obj.cyl, dir, i);
-	d = browse_tri(pos, scene->obj.triangle, dir, i);
-	d = browse_square(pos, scene->obj.square, dir, i);
-	return (d);
+double	dot_product(t_p vec1, t_p vec2)
+{
+	return (vec1.x * vec2.x + vec1.y * vec2.y + vec1.z * vec2.z);
+}
+
+int		comp_vec(t_p a, t_p b)
+{
+	if (a.x == b.x && a.y == b.y && a.z == b.z)
+		return (1);
+	return (0);
+}
+
+t_p		fill_vec(double x, double y, double z)
+{
+	t_p p;
+
+	p.x = x;
+	p.y = y;
+	p.z = z;
+	return (p);
 }

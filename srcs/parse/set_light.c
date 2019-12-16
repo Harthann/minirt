@@ -6,14 +6,14 @@
 /*   By: nieyraud <nieyraud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/20 13:11:53 by nieyraud          #+#    #+#             */
-/*   Updated: 2019/12/03 18:06:00 by nieyraud         ###   ########.fr       */
+/*   Updated: 2019/12/10 16:20:23 by nieyraud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include "minirt.h"
 
-static t_light *new_light(const char *str)
+static	t_light	*new_light(const char *str)
 {
 	t_light *light;
 
@@ -32,10 +32,10 @@ static t_light *new_light(const char *str)
 	return (light);
 }
 
-void	set_light(t_scene *scene, const char *str)
+void			set_light(t_scene *scene, const char *str)
 {
 	t_light *obj;
-	
+
 	obj = scene->obj.light;
 	while (obj && obj->next)
 		obj = obj->next;

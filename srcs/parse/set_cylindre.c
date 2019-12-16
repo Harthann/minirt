@@ -1,46 +1,53 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   set_sphere.c                                       :+:      :+:    :+:   */
+/*   set_cylindre.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nieyraud <nieyraud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/11/20 13:11:53 by nieyraud          #+#    #+#             */
-/*   Updated: 2019/11/27 18:01:30 by nieyraud         ###   ########.fr       */
+/*   Created: 2019/11/30 10:32:06 by nieyraud          #+#    #+#             */
+/*   Updated: 2019/12/12 02:11:43 by nieyraud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include "minirt.h"
 
-static t_sphere *new_sphere(const char *str)
+static	t_cyl	*new_cylindre(const char *str)
 {
-	t_sphere *sphere;
+	t_cyl *cyl;
 
-	if (!(sphere = (t_sphere*)malloc(sizeof(t_sphere))))
+	if (!(cyl = (t_cyl*)malloc(sizeof(t_cyl))))
 		return (NULL);
 	while (*str && !(*str >= '0' && *str <= '9') && *str != '-')
 		str++;
-	str += get_pos(&sphere->center, str);
-	sphere->radius = ft_atof(str);
-	while (*str && *str >= '0' && *str <= '9')
+	str += get_pos(&cyl->pos, str);
+	str += get_pos(&cyl->vec, str);
+	cyl->vec = norm_vec(cyl->vec);
+	cyl->radius = ft_atof(str);
+	while (*str && (*str != ' ' && *str != '\t'))
 		str++;
 	while (*str && (*str == ' ' || *str == '\t'))
 		str++;
-	get_color(&sphere->color, str);
-	sphere->next = NULL;
-	return (sphere);
+	cyl->heigth = ft_atof(str);
+	while (*str && (*str != ' ' && *str != '\t'))
+		str++;
+	while (*str && (*str == ' ' || *str == '\t'))
+		str++;
+	get_color(&cyl->color, str);
+	cyl->next = NULL;
+	return (cyl);
 }
 
-void	set_sphere(t_scene *scene, const char *str)
+void			set_cylindre(t_scene *scene, const char *str)
 {
-	t_sphere *obj;
-	
-	obj = scene->obj.sphere;
+	t_cyl *obj;
+
+	obj = scene->obj.cyl;
 	while (obj && obj->next)
 		obj = obj->next;
 	if (obj)
-		obj->next = new_sphere(str);
+		obj->next = new_cylindre(str);
 	else
-		scene->obj.sphere = new_sphere(str);
+		scene->obj.cyl = new_cylindre(str);
 }

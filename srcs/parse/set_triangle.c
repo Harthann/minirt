@@ -6,14 +6,14 @@
 /*   By: nieyraud <nieyraud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/07 17:02:19 by nieyraud          #+#    #+#             */
-/*   Updated: 2019/12/07 20:25:28 by nieyraud         ###   ########.fr       */
+/*   Updated: 2019/12/10 16:17:12 by nieyraud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include "minirt.h"
 
-static t_triangle *new_triangle(const char *str)
+static	t_triangle	*new_triangle(const char *str)
 {
 	t_triangle *triangle;
 
@@ -33,10 +33,10 @@ static t_triangle *new_triangle(const char *str)
 	return (triangle);
 }
 
-void	set_triangle(t_scene *scene, const char *str)
+void				set_triangle(t_scene *scene, const char *str)
 {
 	t_triangle *obj;
-	
+
 	obj = scene->obj.triangle;
 	while (obj && obj->next)
 		obj = obj->next;

@@ -1,29 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   intersection.c                                     :+:      :+:    :+:   */
+/*   free_light_cam.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nieyraud <nieyraud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/11/24 13:33:27 by nieyraud          #+#    #+#             */
-/*   Updated: 2019/12/12 00:10:34 by nieyraud         ###   ########.fr       */
+/*   Created: 2019/12/14 18:37:32 by nieyraud          #+#    #+#             */
+/*   Updated: 2019/12/15 12:56:34 by nieyraud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
-#include <math.h>
-#include "libft.h"
 
-double		check_inter(t_scene *scene, t_p dir, t_p pos, t_inter *i)
+void	free_cam(t_cam *cam)
 {
-	double	d;
+	if (cam)
+	{
+		if (cam->next)
+			free_cam(cam->next);
+		free(cam);
+	}
+}
 
-	i->d = -1;
-	d = -1;
-	d = browse_sphere(pos, scene->obj.sphere, dir, i);
-	d = browse_plan(pos, scene->obj.plan, dir, i);
-	d = browse_cylindre(pos, scene->obj.cyl, dir, i);
-	d = browse_tri(pos, scene->obj.triangle, dir, i);
-	d = browse_square(pos, scene->obj.square, dir, i);
-	return (d);
+void	free_light(t_light *light)
+{
+	if (light)
+	{
+		if (light->next)
+			free_light(light->next);
+		free(light);
+	}
 }
