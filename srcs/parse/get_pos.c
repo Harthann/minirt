@@ -6,7 +6,7 @@
 /*   By: nieyraud <nieyraud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/20 12:02:09 by nieyraud          #+#    #+#             */
-/*   Updated: 2019/12/16 12:25:17 by nieyraud         ###   ########.fr       */
+/*   Updated: 2019/12/16 16:32:34 by nieyraud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,14 +19,18 @@ int		get_pos(t_p *vector, const char *str)
 
 	i = 0;
 	if (!(str[i] >= '0' && str[i] <= '9') && *str != '-')
-		ft_error("Wrong position setting\n", NULL);
+		return (-1);
 	vector->x = ft_atof(str);
 	while (str[i] && str[i] != ',')
 		i++;
+	if (str[i] != ',')
+		return (-1);
 	i++;
 	vector->y = ft_atof(str + i);
 	while (str[i] && str[i] != ',')
 		i++;
+	if (str[i] != ',')
+		return (-1);
 	i++;
 	vector->z = ft_atof(str + i);
 	while (str[i] && str[i] != ' ' && str[i] != '\t')

@@ -6,7 +6,7 @@
 /*   By: nieyraud <nieyraud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/10 15:44:21 by nieyraud          #+#    #+#             */
-/*   Updated: 2019/12/16 14:19:41 by nieyraud         ###   ########.fr       */
+/*   Updated: 2019/12/16 16:31:39 by nieyraud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,10 +103,6 @@ typedef struct		s_light
 	struct s_light	*next;
 }					t_light;
 
-/*
-** STRUCTURE GENERALES
-*/
-
 typedef struct		s_cam
 {
 	t_p				pos;
@@ -115,7 +111,6 @@ typedef struct		s_cam
 	double			v_plane_h;
 	struct s_cam	*next;
 }					t_cam;
-
 typedef struct		s_obj
 {
 	t_sphere	*sphere;
@@ -125,6 +120,10 @@ typedef struct		s_obj
 	t_triangle	*triangle;
 	t_light		*light;
 }					t_obj;
+
+/*
+** STRUCTURE GENERALES
+*/
 
 typedef struct		s_image
 {
