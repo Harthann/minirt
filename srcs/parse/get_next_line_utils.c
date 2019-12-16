@@ -6,11 +6,12 @@
 /*   By: nieyraud <nieyraud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/18 09:26:57 by nieyraud          #+#    #+#             */
-/*   Updated: 2019/11/27 18:01:17 by nieyraud         ###   ########.fr       */
+/*   Updated: 2019/12/16 20:01:14 by nieyraud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
+#include "libft.h"
 
 size_t	ft_strlen(const char *s)
 {
@@ -24,7 +25,7 @@ size_t	ft_strlen(const char *s)
 	return (i);
 }
 
-int		ft_strchr(char *str, char c)
+int		ft_search(char *str, char c)
 {
 	int i;
 
@@ -51,19 +52,6 @@ void	*ft_memcpy(void *dst, const void *src, size_t n)
 		i++;
 	}
 	return (dst);
-}
-
-char	*ft_substr(char const *s, unsigned int start, size_t len)
-{
-	char	*str;
-
-	if (!(str = (char*)malloc(sizeof(char) * (len + 1))))
-		return (NULL);
-	if (start > ft_strlen(s))
-		return (str);
-	ft_memcpy(str, s + start, len);
-	str[len] = '\0';
-	return (str);
 }
 
 char	*ft_strjoin_free(char *s1, char *s2)

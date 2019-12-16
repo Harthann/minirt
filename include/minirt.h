@@ -6,7 +6,7 @@
 /*   By: nieyraud <nieyraud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/10 15:44:21 by nieyraud          #+#    #+#             */
-/*   Updated: 2019/12/16 16:31:39 by nieyraud         ###   ########.fr       */
+/*   Updated: 2019/12/16 18:50:48 by nieyraud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -189,7 +189,7 @@ typedef struct	s_header
 */
 
 int					get_next_line(int fd, char **line);
-double				ft_atof(const char *str);
+double				ft_atof(const char *str, char *error);
 
 /*
 **  LIB VECTEUR
@@ -227,7 +227,7 @@ double				inter_square(t_p pos, t_square square, t_p dir);
 void				init_scene(t_scene *scene);
 t_scene				parse_file(char *str);
 int					get_color(t_color *color, const char *str);
-int					get_pos(t_p *vector, const char *str);
+int					get_pos(t_p *vector, const char *str, char *error);
 void				set_resolution(t_scene *scene, const char *str);
 void				set_ambient_light(t_scene *scene, const char *str);
 void				set_cam(t_scene *scene, const char *str);
@@ -275,7 +275,7 @@ int					key_control(int key, t_scene *scene);
 int					raytrace(t_scene *scene, int i, int j, t_cam cam);
 double				check_inter(t_scene *sc, t_p dir, t_p pos, t_inter *i);
 t_color				pixel_intens(t_inter i, t_light *l, t_scene sc);
-double				specular_light(t_light light, t_inter inter, t_p V);
+double				specular_light(t_light light, t_inter inter, t_p v);
 void				screenshot(t_scene scene, char *name);
 
 #endif

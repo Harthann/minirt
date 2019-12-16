@@ -6,7 +6,7 @@
 /*   By: nieyraud <nieyraud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/27 17:34:51 by nieyraud          #+#    #+#             */
-/*   Updated: 2019/12/10 16:19:03 by nieyraud         ###   ########.fr       */
+/*   Updated: 2019/12/16 19:00:09 by nieyraud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,19 +15,21 @@
 
 static	t_plan	*new_plan(const char *str)
 {
-	t_plan *plan;
+	t_plan	*plan;
+	char	error;
 
+	error = 0;
 	if (!(plan = (t_plan*)malloc(sizeof(t_plan))))
 		return (NULL);
 	while (*str && !(*str >= '0' && *str <= '9') && *str != '-')
 		str++;
-	str += get_pos(&plan->origin, str);
-	str += get_pos(&plan->vector, str);
+	str += get_pos(&plan->origin, str, &error);
+	str += get_pos(&plan->vector, str, &error);
 	while (*str && (*str == ' ' || *str == '\t'))
 		str++;
-	get_color(&plan->color, str);
+	get_color(&plan->color, str) < 0 ? error = 1 : 0;
 	plan->next = NULL;
-	return (plan);
+	return (error ? NULL : plan);
 }
 
 void			set_plan(t_scene *scene, const char *str)
@@ -38,7 +40,13 @@ void			set_plan(t_scene *scene, const char *str)
 	while (obj && obj->next)
 		obj = obj->next;
 	if (obj)
-		obj->next = new_plan(str);
+	{
+		if (!(obj->next = new_plan(str)))
+			ft_error("Parsing error for plan.\n", scene);
+	}
 	else
-		scene->obj.plan = new_plan(str);
+	{
+		if (!(scene->obj.plan = new_plan(str)))
+			ft_error("Parsing error for plan.\n", scene);
+	}
 }

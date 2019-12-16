@@ -6,7 +6,7 @@
 /*   By: nieyraud <nieyraud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/16 15:40:10 by nieyraud          #+#    #+#             */
-/*   Updated: 2019/12/11 00:59:38 by nieyraud         ###   ########.fr       */
+/*   Updated: 2019/12/16 20:01:45 by nieyraud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,6 @@ void				*ft_memcpy(void *dst, const void *src, size_t n);
 char				*ft_strjoin_free(char *s1, char *s2);
 size_t				ft_strlen(const char *s);
 char				*ft_substr(char const *s, unsigned int start, size_t len);
-int					ft_strchr(char *str, char c);
+int					ft_search(char *str, char c);
 
 #endif

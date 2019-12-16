@@ -6,7 +6,7 @@
 #    By: nieyraud <nieyraud@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/11/10 16:28:15 by nieyraud          #+#    #+#              #
-#    Updated: 2019/12/15 14:29:42 by nieyraud         ###   ########.fr        #
+#    Updated: 2019/12/16 19:55:36 by nieyraud         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -63,6 +63,7 @@ INCLUDE	= 	include/minirt.h \
 #########################
 
 FLAGS = -Wall -Werror -Wextra -O2 -march=native
+SAN = -g3 -fsanitize=address
 OPT_FLAGS = -flto
 THREAD = -lpthread
 
@@ -84,6 +85,11 @@ all : $(NAME)
 $(NAME) : ${LIBS} ${OBJ} ${INCLUDE} 
 	@echo "${vertclair}Creating ${NAME}"
 	@gcc ${FLAGS} ${OPT_FLAGS} ${THREAD} -I include -g -L ${LIB} -l mlx ${FRAMEWORK} ${OBJ} lib/${LIBFT} -o ${NAME}
+	@echo "${vertclair}[Minirt ready to use]"
+
+sanitize : ${LIBS} ${OBJ} ${INCLUDE} 
+	@echo "${vertclair}Creating ${NAME}"
+	@gcc ${FLAGS} ${SAN} ${OPT_FLAGS} ${THREAD} -I include -g -L ${LIB} -l mlx ${FRAMEWORK} ${OBJ} lib/${LIBFT} -o ${NAME}
 	@echo "${vertclair}[Minirt ready to use]"
 
 ${LIBS} : lib1

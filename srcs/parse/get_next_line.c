@@ -6,7 +6,7 @@
 /*   By: nieyraud <nieyraud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/16 15:40:36 by nieyraud          #+#    #+#             */
-/*   Updated: 2019/12/10 16:25:03 by nieyraud         ###   ########.fr       */
+/*   Updated: 2019/12/16 20:01:31 by nieyraud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,12 +49,12 @@ static int			reading_file(int fd, char **stock)
 	int		buff;
 
 	buff = 1;
-	if (ft_strchr(*stock, '\n') != -1)
+	if (ft_search(*stock, '\n') != -1)
 		return (1);
 	if (!(buffer = (char*)malloc(sizeof(char) * (BUFFER_SIZE + 1))))
 		return (-1);
 	*buffer = '\0';
-	while (ft_strchr(buffer, '\n') == -1 && buff > 0)
+	while (ft_search(buffer, '\n') == -1 && buff > 0)
 	{
 		buff = read(fd, buffer, BUFFER_SIZE);
 		if (buff >= 0)
@@ -80,7 +80,7 @@ static int			stock_line(char **line, t_stock *stock)
 		return (-1);
 	if ((error = reading_file(stock->fd, &stock->str)) < 0)
 		return (-1);
-	length = ft_strchr(stock->str, '\n');
+	length = ft_search(stock->str, '\n');
 	length == -1 ? length = ft_strlen(stock->str) : length;
 	if (!(*line = ft_substr(stock->str, 0, length)))
 		return (-1);

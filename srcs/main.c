@@ -6,7 +6,7 @@
 /*   By: nieyraud <nieyraud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/10 14:32:26 by nieyraud          #+#    #+#             */
-/*   Updated: 2019/12/16 15:53:08 by nieyraud         ###   ########.fr       */
+/*   Updated: 2019/12/16 19:54:32 by nieyraud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,13 +18,13 @@
 #include <mlx.h>
 #include <unistd.h>
 
-void __attribute__((destructor)) no_end();
+// void __attribute__((destructor)) no_end();
 
-void	no_end(void)
-{
-	while (1)
-		;
-}
+// void	no_end(void)
+// {
+// 	while (1)
+// 		;
+// }
 
 static t_img		*create_image(t_window win, t_cam *cam)
 {
