@@ -6,7 +6,7 @@
 /*   By: nieyraud <nieyraud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/20 10:45:58 by nieyraud          #+#    #+#             */
-/*   Updated: 2019/12/16 17:44:39 by nieyraud         ###   ########.fr       */
+/*   Updated: 2019/12/17 04:07:08 by nieyraud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,19 @@ static	int	integer_part(const char *str, int *sign, char *error)
 	return (nb);
 }
 
+static	int	ft_int_length(int nb)
+{
+	int count;
+
+	count = 1;
+	while (nb > 0)
+	{
+		count++;
+		nb = nb / 10;
+	}
+	return (count);
+}
+
 double		ft_atof(const char *str, char *error)
 {
 	double	nb;
@@ -45,9 +58,8 @@ double		ft_atof(const char *str, char *error)
 
 	nb = integer_part(str, &sign, error);
 	count = 10;
-	while (*str && *str != '.' && *str != ',' && *str != ' ' && *str != '\t')
-		str++;
-	if (*str == ',')
+	str += ft_int_length(nb);
+	if (*str == ',' || *str == ' ')
 		return (nb * sign);
 	str++;
 	while (*str && ((*str >= '0' && *str <= '9')))
