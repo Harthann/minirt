@@ -6,7 +6,7 @@
 /*   By: nieyraud <nieyraud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/10 15:44:21 by nieyraud          #+#    #+#             */
-/*   Updated: 2019/12/16 18:50:48 by nieyraud         ###   ########.fr       */
+/*   Updated: 2019/12/16 23:58:04 by nieyraud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -172,7 +172,7 @@ typedef struct		s_glob
 	t_cam	cam;
 }					t_glob;
 
-typedef struct	s_header
+typedef struct		s_header
 {
 	short	type;
 	int		size;
@@ -182,7 +182,7 @@ typedef struct	s_header
 	short	bpp;
 	int		raw_size;
 	int		res;
-}				t_header;
+}					t_header;
 
 /*
 ** FONCTIONS UTILS
