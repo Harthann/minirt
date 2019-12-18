@@ -6,7 +6,7 @@
 /*   By: nieyraud <nieyraud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/19 13:41:33 by nieyraud          #+#    #+#             */
-/*   Updated: 2019/12/17 19:55:48 by nieyraud         ###   ########.fr       */
+/*   Updated: 2019/12/18 18:45:08 by nieyraud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,8 @@ t_scene			parse_file(char *str)
 		free(line);
 	}
 	close(fd);
+	if (!scene.cam)
+		ft_error("You can't see without camera!\n", &scene);
 	if ((scene.win.mlx_win = mlx_new_window(scene.win.mlx_ptr,
 		scene.win.width, scene.win.heigth, "miniRT")) == NULL)
 		ft_error("Failed to initialize mlx\n", &scene);
