@@ -3,9 +3,10 @@ A 0.6 255,255,255
 
 c 0,0,-100 0,0,1
 
-l 0,0,-50 0.2 255,255,255
-l 0,50,0 0.2 255,255,255
+sk textures/starsky4.xpm
 
-sp -30,10,0 5 255,0,0 20 textures/lune.xpm
+l 200,50,-50 0.8 255,255,255
+
+sp -50,10,0 5 255,0,0 20 textures/lune.xpm
 
 sp 0,0,0 20 255,0,0 50 textures/terre.xpm
