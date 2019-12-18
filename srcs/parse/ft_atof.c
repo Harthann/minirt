@@ -6,7 +6,7 @@
 /*   By: nieyraud <nieyraud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/20 10:45:58 by nieyraud          #+#    #+#             */
-/*   Updated: 2019/12/17 04:07:08 by nieyraud         ###   ########.fr       */
+/*   Updated: 2019/12/17 16:13:57 by nieyraud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ static	int	integer_part(const char *str, int *sign, char *error)
 	return (nb);
 }
 
-static	int	ft_int_length(int nb)
+int			ft_int_length(int nb)
 {
 	int count;
 

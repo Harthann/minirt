@@ -33,7 +33,7 @@ $(NAME) : ${OBJS} ${HEADER}
 	@${RANLIB} ${NAME}
 
 %.o: %.c
-	@${ECHO} Compiling $<
+	@${ECHO} -n .
 	@${CC} $(FLAGS) -I ${INCLUDE} -c $< -o $@
 
 clean :

@@ -6,7 +6,7 @@
 /*   By: nieyraud <nieyraud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/25 16:15:46 by nieyraud          #+#    #+#             */
-/*   Updated: 2019/12/12 02:25:28 by nieyraud         ###   ########.fr       */
+/*   Updated: 2019/12/17 16:22:28 by nieyraud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,12 +87,12 @@ int		browse_sphere(t_p pos, t_sphere *sphere, t_p dir, t_inter *i)
 	}
 	if (memo)
 	{
-		i->color = memo->color;
 		i->p = shift_vec(pos, dir, i->d);
 		i->n = shift_vec(i->p, memo->center, -1);
 		i->n = norm_vec(i->n);
 		if (dot_product(i->n, dir) > 0)
 			i->n = mult_vec(i->n, -1);
+		i->color = texture_mapping(*memo, i);
 	}
 	return (i->d);
 }

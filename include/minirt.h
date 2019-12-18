@@ -6,7 +6,7 @@
 /*   By: nieyraud <nieyraud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/10 15:44:21 by nieyraud          #+#    #+#             */
-/*   Updated: 2019/12/16 23:58:04 by nieyraud         ###   ########.fr       */
+/*   Updated: 2019/12/17 20:01:22 by nieyraud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,14 @@ typedef struct		s_point
 	double	z;
 }					t_p;
 
+typedef struct		s_tex
+{
+	int		*texture;
+	void	*ptr;
+	int		width;
+	int		heigth;
+}					t_tex;
+
 /*
 ** STRUCTURE OBJETS
 */
@@ -56,6 +64,7 @@ typedef struct		s_sphere
 	double			radius;
 	t_color			color;
 	int				speed;
+	t_tex			texture;
 	struct s_sphere	*next;
 }					t_sphere;
 
@@ -153,6 +162,7 @@ typedef struct		s_scene
 	char		*name;
 	t_obj		obj;
 	t_img		*image;
+	t_tex		skybox;
 	char		rotation : 1;
 }					t_scene;
 
@@ -209,6 +219,7 @@ t_p					fill_vec(double x, double y, double z);
 ** FONCTIONS DESSIN
 */
 
+t_color				texture_mapping(t_sphere sphere, t_inter *i);
 int					browse_sphere(t_p pos, t_sphere *sp, t_p dir, t_inter *i);
 int					browse_cylindre(t_p pos, t_cyl *cyl, t_p dir, t_inter *i);
 int					browse_plan(t_p pos, t_plan *plan, t_p dir, t_inter *i);
@@ -225,9 +236,13 @@ double				inter_square(t_p pos, t_square square, t_p dir);
 */
 
 void				init_scene(t_scene *scene);
+int					ft_int_length(int nb);
+void				set_skybox(t_scene *scene, const char *str);
 t_scene				parse_file(char *str);
 int					get_color(t_color *color, const char *str);
 int					get_pos(t_p *vector, const char *str, char *error);
+t_tex				get_texture(char *str, t_scene scene);
+int					get_speed(int *speed, const char *str, char *error);
 void				set_resolution(t_scene *scene, const char *str);
 void				set_ambient_light(t_scene *scene, const char *str);
 void				set_cam(t_scene *scene, const char *str);
@@ -271,6 +286,7 @@ t_p					find_top_vec(t_p vec);
 
 int					draw_image(t_scene scene, t_cam cam, int **img);
 int					initiate(t_scene scene);
+t_color				itoc(int color);
 int					key_control(int key, t_scene *scene);
 int					raytrace(t_scene *scene, int i, int j, t_cam cam);
 double				check_inter(t_scene *sc, t_p dir, t_p pos, t_inter *i);

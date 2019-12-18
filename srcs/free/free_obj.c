@@ -6,7 +6,7 @@
 /*   By: nieyraud <nieyraud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/14 18:31:56 by nieyraud          #+#    #+#             */
-/*   Updated: 2019/12/15 12:57:00 by nieyraud         ###   ########.fr       */
+/*   Updated: 2019/12/17 16:11:54 by nieyraud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ void	free_sphere(t_sphere *obj)
 	{
 		if (obj->next)
 			free_sphere(obj->next);
+		free(obj->texture.texture);
 		free(obj);
 	}
 }

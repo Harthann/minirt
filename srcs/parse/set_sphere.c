@@ -6,14 +6,14 @@
 /*   By: nieyraud <nieyraud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/20 13:11:53 by nieyraud          #+#    #+#             */
-/*   Updated: 2019/12/16 19:08:56 by nieyraud         ###   ########.fr       */
+/*   Updated: 2019/12/17 18:04:59 by nieyraud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include "minirt.h"
 
-static	t_sphere	*new_sphere(const char *str)
+static	t_sphere	*new_sphere(const char *str, t_scene scene)
 {
 	t_sphere	*sphere;
 	char		error;
@@ -33,7 +33,8 @@ static	t_sphere	*new_sphere(const char *str)
 	count = get_color(&sphere->color, str);
 	(count < 0) ? error = 1 : 0;
 	str += count;
-	sphere->speed = ft_atoi(str);
+	str += get_speed(&sphere->speed, str, &error);
+	sphere->texture = get_texture((char*)str, scene);
 	sphere->next = NULL;
 	return (error ? NULL : sphere);
 }
@@ -47,12 +48,12 @@ void				set_sphere(t_scene *scene, const char *str)
 		obj = obj->next;
 	if (obj)
 	{
-		if (!(obj->next = new_sphere(str)))
+		if (!(obj->next = new_sphere(str, *scene)))
 			ft_error("Parsing error for sphere.\n", scene);
 	}
 	else
 	{
-		if (!(scene->obj.sphere = new_sphere(str)))
+		if (!(scene->obj.sphere = new_sphere(str, *scene)))
 			ft_error("Parsing error for sphere.\n", scene);
 	}
 }

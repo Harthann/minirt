@@ -6,7 +6,7 @@
 /*   By: nieyraud <nieyraud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/10 14:32:26 by nieyraud          #+#    #+#             */
-/*   Updated: 2019/12/16 21:20:45 by nieyraud         ###   ########.fr       */
+/*   Updated: 2019/12/18 11:23:19 by nieyraud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,6 +82,8 @@ int					main(int ac, char **av)
 		return (-1);
 	}
 	browse_image(&scene);
+	// mlx_put_image_to_window(scene.win.mlx_ptr, scene.win.mlx_win, scene.obj.sphere->texture.ptr, 0, 0);
+	// mlx_loop(scene.win.mlx_ptr);
 	initiate(scene);
 	if (ac == 3 && !ft_strncmp(av[2], "-save", 5))
 		screenshot(scene, av[1]);

@@ -6,7 +6,7 @@
 /*   By: nieyraud <nieyraud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/09 13:14:51 by nieyraud          #+#    #+#             */
-/*   Updated: 2019/10/16 09:41:12 by nieyraud         ###   ########.fr       */
+/*   Updated: 2019/12/17 18:27:47 by nieyraud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,5 +33,5 @@ char	*ft_strnstr(const char *s1, const char *s2, size_t len)
 		}
 		i++;
 	}
-	return (0);
+	return (NULL);
 }

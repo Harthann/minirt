@@ -6,7 +6,7 @@
 #    By: nieyraud <nieyraud@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/11/10 16:28:15 by nieyraud          #+#    #+#              #
-#    Updated: 2019/12/16 20:59:05 by nieyraud         ###   ########.fr        #
+#    Updated: 2019/12/18 11:10:14 by nieyraud         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -38,7 +38,8 @@ SRC_FILE =	calc_inter.c browse_objects.c main.c draw_image.c \
 			set_triangle.c set_square.c lib_vec_2.c cam_control.c \
 			key_control.c screenshot.c specular.c rotate_obj.c \
 			free_light_cam.c free_obj.c ft_free.c free_image.c \
-			ft_error.c
+			ft_error.c get_texture.c get_speed.c texture_mapping.c \
+			skybox.c \
 
 #############################
 #		DIRCTORIES PATH		#
