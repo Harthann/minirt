@@ -6,7 +6,7 @@
 /*   By: nieyraud <nieyraud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/07 14:18:55 by nieyraud          #+#    #+#             */
-/*   Updated: 2019/12/15 12:55:00 by nieyraud         ###   ########.fr       */
+/*   Updated: 2019/12/18 15:49:08 by nieyraud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,5 +53,7 @@ int			key_control(int key, t_scene *scene)
 		scene->rotation = !scene->rotation;
 	if (key == 17)
 		screenshot(*scene, scene->name);
+	if (key == 9)
+		printf("[%f] [%f] [%f]\n", scene->cam->vector.x, scene->cam->vector.y, scene->cam->vector.z);
 	return (1);
 }
