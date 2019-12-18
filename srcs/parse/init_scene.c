@@ -6,7 +6,7 @@
 /*   By: nieyraud <nieyraud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/20 13:35:08 by nieyraud          #+#    #+#             */
-/*   Updated: 2019/12/15 14:24:56 by nieyraud         ###   ########.fr       */
+/*   Updated: 2019/12/18 18:49:13 by nieyraud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,8 @@ static	void	init_win(t_window *win)
 {
 	win->mlx_ptr = NULL;
 	win->mlx_win = NULL;
-	win->heigth = 0;
-	win->width = 0;
+	win->heigth = 600;
+	win->width = 600;
 	win->fov = 90;
 }
 
