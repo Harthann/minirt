@@ -22,6 +22,7 @@ ECHO = /bin/echo
 AR = /usr/bin/ar
 CC = /usr/bin/gcc
 RM = /bin/rm
+MKDIR = /bin/mkdir
 RANLIB = /usr/bin/ranlib
 
 
@@ -29,11 +30,11 @@ all : $(NAME)
 
 $(NAME) : ${OBJS} ${HEADER}
 	@${ECHO} Creating ${NAME}
+	@${MKDIR} -p ../lib
 	@${AR} rc ${NAME} ${OBJS}
 	@${RANLIB} ${NAME}
 
 %.o: %.c
-	@${ECHO} -n .
 	@${CC} $(FLAGS) -I ${INCLUDE} -c $< -o $@
 
 clean :
@@ -46,4 +47,4 @@ fclean : clean
 
 re : fclean all
 
-.PHONY : all clean fclean re
+.PHONY : all clean fclean re ../lib/libft
