@@ -6,7 +6,7 @@
 /*   By: nieyraud <nieyraud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/22 19:15:37 by nieyraud          #+#    #+#             */
-/*   Updated: 2019/12/17 22:12:16 by nieyraud         ###   ########.fr       */
+/*   Updated: 2019/12/18 16:36:04 by nieyraud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ static t_color	fill_color(t_scene scene, t_p dir)
 	double x;
 	double y;
 	
-	if (!scene.skybox.texture)
+	if (!scene.skybox.ptr || !scene.skybox.texture)
 	{
 		color.r = scene.ambient.color.r * scene.ambient.intensity / 4;
 		color.g = scene.ambient.color.g * scene.ambient.intensity / 4;
@@ -50,9 +50,15 @@ static t_color	fill_color(t_scene scene, t_p dir)
 	}
 	else
 	{
-		x = 0.37 * scene.skybox.width + dir.x * scene.skybox.width;
-		y = 0.5 * scene.skybox.heigth + dir.y * scene.skybox.heigth;
-		color = itoc(scene.skybox.texture[(int)x + (int)y]);
+		x = 1 - (atan2(dir.z, dir.x) + M_PI) / (2 * M_PI);
+		y = (asin(dir.y) + M_PI_2) / M_PI;
+		x = x * scene.skybox.width;
+		y = (1 - y) * scene.skybox.heigth;
+		x < 0 ? x = 0 : 0;
+		y < 0 ? y = 0 : 0;
+		x > scene.skybox.width - 1 ? x = scene.skybox.width - 1 : 0;
+		y > scene.skybox.heigth - 1 ? y = scene.skybox.heigth - 1 : 0;
+		color = itoc(scene.skybox.texture[(int)x + (int)y * scene.skybox.width]);
 	}
 	return (color);
 }
