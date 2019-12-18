@@ -6,7 +6,7 @@
 /*   By: nieyraud <nieyraud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/10 14:32:26 by nieyraud          #+#    #+#             */
-/*   Updated: 2019/12/18 15:00:59 by nieyraud         ###   ########.fr       */
+/*   Updated: 2019/12/18 19:43:34 by nieyraud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,6 +81,8 @@ int					main(int ac, char **av)
 		write(1, "No input file\n", 14);
 		return (-1);
 	}
+	if (!scene.cam)
+		ft_error("You can't see without camera!\n", &scene);
 	browse_image(&scene);
 	initiate(scene);
 	if (ac == 3 && !ft_strncmp(av[2], "-save", 5))
