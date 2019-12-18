@@ -6,7 +6,7 @@
 /*   By: nieyraud <nieyraud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/22 19:15:37 by nieyraud          #+#    #+#             */
-/*   Updated: 2019/12/18 16:36:04 by nieyraud         ###   ########.fr       */
+/*   Updated: 2019/12/18 17:14:56 by nieyraud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,10 +38,10 @@ t_p				init_screen(int i, int j, t_scene scene)
 
 static t_color	fill_color(t_scene scene, t_p dir)
 {
-	t_color color;
-	double x;
-	double y;
-	
+	t_color	color;
+	double	x;
+	double	y;
+
 	if (!scene.skybox.ptr || !scene.skybox.texture)
 	{
 		color.r = scene.ambient.color.r * scene.ambient.intensity / 4;
@@ -58,7 +58,8 @@ static t_color	fill_color(t_scene scene, t_p dir)
 		y < 0 ? y = 0 : 0;
 		x > scene.skybox.width - 1 ? x = scene.skybox.width - 1 : 0;
 		y > scene.skybox.heigth - 1 ? y = scene.skybox.heigth - 1 : 0;
-		color = itoc(scene.skybox.texture[(int)x + (int)y * scene.skybox.width]);
+		color = itoc(scene.skybox.texture[(int)x + (int)y
+		* scene.skybox.width]);
 	}
 	return (color);
 }

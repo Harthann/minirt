@@ -6,7 +6,7 @@
 /*   By: nieyraud <nieyraud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/17 16:19:49 by nieyraud          #+#    #+#             */
-/*   Updated: 2019/12/18 15:04:31 by nieyraud         ###   ########.fr       */
+/*   Updated: 2019/12/18 17:13:11 by nieyraud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include "libft.h"
 #include <math.h>
 
-t_color		itoc(int color)
+t_color				itoc(int color)
 {
 	int		tmp;
 	t_color res;

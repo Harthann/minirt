@@ -6,7 +6,7 @@
 /*   By: nieyraud <nieyraud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/20 10:45:58 by nieyraud          #+#    #+#             */
-/*   Updated: 2019/12/17 16:13:57 by nieyraud         ###   ########.fr       */
+/*   Updated: 2019/12/18 17:58:48 by nieyraud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,7 @@ double		ft_atof(const char *str, char *error)
 	if (*str == ',' || *str == ' ')
 		return (nb * sign);
 	str++;
+	printf("[%s]\n", str);
 	while (*str && ((*str >= '0' && *str <= '9')))
 	{
 		if (*str >= '0' && *str <= '9')

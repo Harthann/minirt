@@ -1,10 +1,9 @@
 R 800 800
 A 0.6 255,0,0
 
-c 0,160,-500 0,0,1
+c 0,160,-500 0,-0.5,1
 
-# sk textures/starsky4.xpm
-# l 0,0,-50 0.2 255,255,255
+sk textures/starsky4.xpm
 
 l -35,0,0 0.05 255,255,255
 l 35,0,0 0.05 255,255,255
@@ -27,8 +26,6 @@ l -35,-35,0 0.05 255,255,255
 l 35,-35,0 0.05 255,255,255
 
 sp 0,0,0 30 0,0,0 50 textures/soleil.xpm
-# sp 0,0,0 5000 0,0,0 0 textures/starsky.xpm
-# sp -30,10,0 5 255,0,0 20 textures/lune.xpm
 
 sp 0,0,100 10 255,0,0 10 textures/mercure.xpm
 sp 0,0,200 20 255,0,0 20 textures/venus.xpm

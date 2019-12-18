@@ -6,7 +6,7 @@
 /*   By: nieyraud <nieyraud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/17 15:09:59 by nieyraud          #+#    #+#             */
-/*   Updated: 2019/12/18 15:00:18 by nieyraud         ###   ########.fr       */
+/*   Updated: 2019/12/18 17:14:11 by nieyraud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,8 @@ t_tex	get_texture(char *str, t_scene scene)
 	str, &texture.width, &texture.heigth);
 	if (texture.ptr)
 	{
-		texture.texture = (int*)mlx_get_data_addr(texture.ptr, &tmp, &texture.width, &tmp);
+		texture.texture = (int*)mlx_get_data_addr(texture.ptr,
+		&tmp, &texture.width, &tmp);
 		texture.width = texture.width / 4;
 	}
 	return (texture);
