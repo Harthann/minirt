@@ -85,25 +85,25 @@ all : $(NAME)
 
 $(NAME) : ${LIBS} ${OBJ} ${INCLUDE} 
 	@echo "${vertclair}Creating ${NAME}"
-	@gcc ${FLAGS} ${OPT_FLAGS} ${THREAD} -I include -g -L ${LIB} -l mlx ${FRAMEWORK} ${OBJ} lib/${LIBFT} -o ${NAME}
+	@/usr/bin/gcc ${FLAGS} ${OPT_FLAGS} ${THREAD} -I include -g -L ${LIB} -l mlx ${FRAMEWORK} ${OBJ} lib/${LIBFT} -L minilibx_linux -lmlx -lXext -lX11 -lm -o ${NAME}
 	@echo "${vertclair}[Minirt ready to use]"
 
 sanitize : ${LIBS} ${OBJ} ${INCLUDE} 
 	@echo "${vertclair}Creating ${NAME}"
-	@gcc ${FLAGS} ${SAN} ${OPT_FLAGS} ${THREAD} -I include -g -L ${LIB} -l mlx ${FRAMEWORK} ${OBJ} lib/${LIBFT} -o ${NAME}
+	@/usr/bin/gcc ${FLAGS} ${SAN} ${OPT_FLAGS} ${THREAD} -I include -g -L ${LIB} -l mlx ${FRAMEWORK} ${OBJ} lib/${LIBFT} -o ${NAME}
 	@echo "${vertclair}[Minirt ready to use]"
 
 ${LIBS} : lib1
 
 lib1 :
 	@echo "${violetclair}Checking update for libft.a"
-	@${MAKE} -C libft/ > /dev/null
+	@/usr/bin/make -C libft/ > /dev/null
 	@echo "${violetclair}Libft [${vertclair}OK${violetclair}]"
 
 ${OBJ_PATH}/%.o: %.c ${INCLUDE}
-	@mkdir -p ${OBJ_PATH}
+	@/bin/mkdir -p ${OBJ_PATH}
 	@echo "${cyanfonce}Compiling ${notdir $(basename $@)}"
-	@gcc $(FLAGS) -c -o $@ -I include/ $<
+	@/usr/bin/gcc $(FLAGS) -c -o $@ -I include/ $<
 
 clean :
 	@echo "${rouge}Removing objects files"
